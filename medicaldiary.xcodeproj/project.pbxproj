@@ -21,6 +21,20 @@
 		1A790F06189A2AA200F9EC9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A790EE8189A2AA200F9EC9D /* UIKit.framework */; };
 		1A790F0E189A2AA200F9EC9D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A790F0C189A2AA200F9EC9D /* InfoPlist.strings */; };
 		1A790F10189A2AA300F9EC9D /* medicaldiaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F0F189A2AA300F9EC9D /* medicaldiaryTests.m */; };
+		1A790F1B189A2E2800F9EC9D /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F1A189A2E2800F9EC9D /* StartViewController.m */; };
+		1A790F1E189A346300F9EC9D /* EnterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F1D189A346300F9EC9D /* EnterViewController.m */; };
+		1A790F21189A349300F9EC9D /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F20189A349300F9EC9D /* RegisterViewController.m */; };
+		1A790F24189A34A800F9EC9D /* NewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F23189A34A800F9EC9D /* NewPasswordViewController.m */; };
+		1A790F27189A4B1E00F9EC9D /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F26189A4B1E00F9EC9D /* Functions.m */; };
+		1A790F2A189FC5D000F9EC9D /* DairyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F29189FC5CF00F9EC9D /* DairyViewController.m */; };
+		1A790F2D18A0B9F600F9EC9D /* Draw2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F2C18A0B9F600F9EC9D /* Draw2D.m */; };
+		1A790F3018A1216E00F9EC9D /* OprosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F2F18A1216E00F9EC9D /* OprosViewController.m */; };
+		1A790F3318A20FB000F9EC9D /* CreateDairyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F3218A20FB000F9EC9D /* CreateDairyViewController.m */; };
+		1A790F3618A20FF800F9EC9D /* EnterDairyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F3518A20FF800F9EC9D /* EnterDairyViewController.m */; };
+		1A790F3918A2103500F9EC9D /* ResultOprosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F3818A2103500F9EC9D /* ResultOprosViewController.m */; };
+		1A790F3C18A2105D00F9EC9D /* PedometrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F3B18A2105D00F9EC9D /* PedometrViewController.m */; };
+		1A790F3F18A21E0D00F9EC9D /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F3E18A21E0D00F9EC9D /* CustomScrollView.m */; };
+		1AE0F82818A8F12200480DA6 /* AddFactorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE0F82718A8F12200480DA6 /* AddFactorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +67,34 @@
 		1A790F0B189A2AA200F9EC9D /* medicaldiaryTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "medicaldiaryTests-Info.plist"; sourceTree = "<group>"; };
 		1A790F0D189A2AA200F9EC9D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1A790F0F189A2AA300F9EC9D /* medicaldiaryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = medicaldiaryTests.m; sourceTree = "<group>"; };
+		1A790F19189A2E2800F9EC9D /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
+		1A790F1A189A2E2800F9EC9D /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
+		1A790F1C189A346300F9EC9D /* EnterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterViewController.h; sourceTree = "<group>"; };
+		1A790F1D189A346300F9EC9D /* EnterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterViewController.m; sourceTree = "<group>"; };
+		1A790F1F189A349300F9EC9D /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		1A790F20189A349300F9EC9D /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		1A790F22189A34A800F9EC9D /* NewPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPasswordViewController.h; sourceTree = "<group>"; };
+		1A790F23189A34A800F9EC9D /* NewPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPasswordViewController.m; sourceTree = "<group>"; };
+		1A790F25189A4B1E00F9EC9D /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
+		1A790F26189A4B1E00F9EC9D /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
+		1A790F28189FC5CF00F9EC9D /* DairyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DairyViewController.h; sourceTree = "<group>"; };
+		1A790F29189FC5CF00F9EC9D /* DairyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DairyViewController.m; sourceTree = "<group>"; };
+		1A790F2B18A0B9F600F9EC9D /* Draw2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Draw2D.h; sourceTree = "<group>"; };
+		1A790F2C18A0B9F600F9EC9D /* Draw2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Draw2D.m; sourceTree = "<group>"; };
+		1A790F2E18A1216E00F9EC9D /* OprosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OprosViewController.h; sourceTree = "<group>"; };
+		1A790F2F18A1216E00F9EC9D /* OprosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OprosViewController.m; sourceTree = "<group>"; };
+		1A790F3118A20FB000F9EC9D /* CreateDairyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDairyViewController.h; sourceTree = "<group>"; };
+		1A790F3218A20FB000F9EC9D /* CreateDairyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDairyViewController.m; sourceTree = "<group>"; };
+		1A790F3418A20FF800F9EC9D /* EnterDairyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterDairyViewController.h; sourceTree = "<group>"; };
+		1A790F3518A20FF800F9EC9D /* EnterDairyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterDairyViewController.m; sourceTree = "<group>"; };
+		1A790F3718A2103500F9EC9D /* ResultOprosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultOprosViewController.h; sourceTree = "<group>"; };
+		1A790F3818A2103500F9EC9D /* ResultOprosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultOprosViewController.m; sourceTree = "<group>"; };
+		1A790F3A18A2105D00F9EC9D /* PedometrViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PedometrViewController.h; sourceTree = "<group>"; };
+		1A790F3B18A2105D00F9EC9D /* PedometrViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PedometrViewController.m; sourceTree = "<group>"; };
+		1A790F3D18A21E0D00F9EC9D /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomScrollView.h; sourceTree = "<group>"; };
+		1A790F3E18A21E0D00F9EC9D /* CustomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomScrollView.m; sourceTree = "<group>"; };
+		1AE0F82618A8F12200480DA6 /* AddFactorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFactorViewController.h; sourceTree = "<group>"; };
+		1AE0F82718A8F12200480DA6 /* AddFactorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFactorViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +124,10 @@
 		1A790ED8189A2AA200F9EC9D = {
 			isa = PBXGroup;
 			children = (
+				1A790F3D18A21E0D00F9EC9D /* CustomScrollView.h */,
+				1A790F3E18A21E0D00F9EC9D /* CustomScrollView.m */,
+				1A790F2B18A0B9F600F9EC9D /* Draw2D.h */,
+				1A790F2C18A0B9F600F9EC9D /* Draw2D.m */,
 				1A790EEA189A2AA200F9EC9D /* medicaldiary */,
 				1A790F09189A2AA200F9EC9D /* medicaldiaryTests */,
 				1A790EE3189A2AA200F9EC9D /* Frameworks */,
@@ -115,6 +161,30 @@
 				1A790EF3189A2AA200F9EC9D /* AppDelegate.h */,
 				1A790EF4189A2AA200F9EC9D /* AppDelegate.m */,
 				1A790EF6189A2AA200F9EC9D /* Main.storyboard */,
+				1AE0F82618A8F12200480DA6 /* AddFactorViewController.h */,
+				1AE0F82718A8F12200480DA6 /* AddFactorViewController.m */,
+				1A790F3A18A2105D00F9EC9D /* PedometrViewController.h */,
+				1A790F3B18A2105D00F9EC9D /* PedometrViewController.m */,
+				1A790F3718A2103500F9EC9D /* ResultOprosViewController.h */,
+				1A790F3818A2103500F9EC9D /* ResultOprosViewController.m */,
+				1A790F3418A20FF800F9EC9D /* EnterDairyViewController.h */,
+				1A790F3518A20FF800F9EC9D /* EnterDairyViewController.m */,
+				1A790F3118A20FB000F9EC9D /* CreateDairyViewController.h */,
+				1A790F3218A20FB000F9EC9D /* CreateDairyViewController.m */,
+				1A790F2E18A1216E00F9EC9D /* OprosViewController.h */,
+				1A790F2F18A1216E00F9EC9D /* OprosViewController.m */,
+				1A790F28189FC5CF00F9EC9D /* DairyViewController.h */,
+				1A790F29189FC5CF00F9EC9D /* DairyViewController.m */,
+				1A790F25189A4B1E00F9EC9D /* Functions.h */,
+				1A790F26189A4B1E00F9EC9D /* Functions.m */,
+				1A790F1F189A349300F9EC9D /* RegisterViewController.h */,
+				1A790F20189A349300F9EC9D /* RegisterViewController.m */,
+				1A790F22189A34A800F9EC9D /* NewPasswordViewController.h */,
+				1A790F23189A34A800F9EC9D /* NewPasswordViewController.m */,
+				1A790F1C189A346300F9EC9D /* EnterViewController.h */,
+				1A790F1D189A346300F9EC9D /* EnterViewController.m */,
+				1A790F19189A2E2800F9EC9D /* StartViewController.h */,
+				1A790F1A189A2E2800F9EC9D /* StartViewController.m */,
 				1A790EF9189A2AA200F9EC9D /* ViewController.h */,
 				1A790EFA189A2AA200F9EC9D /* ViewController.m */,
 				1A790EFC189A2AA200F9EC9D /* Images.xcassets */,
@@ -250,8 +320,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A790EFB189A2AA200F9EC9D /* ViewController.m in Sources */,
+				1A790F21189A349300F9EC9D /* RegisterViewController.m in Sources */,
+				1A790F3F18A21E0D00F9EC9D /* CustomScrollView.m in Sources */,
+				1A790F3C18A2105D00F9EC9D /* PedometrViewController.m in Sources */,
+				1A790F3618A20FF800F9EC9D /* EnterDairyViewController.m in Sources */,
+				1A790F3918A2103500F9EC9D /* ResultOprosViewController.m in Sources */,
+				1A790F24189A34A800F9EC9D /* NewPasswordViewController.m in Sources */,
+				1A790F1B189A2E2800F9EC9D /* StartViewController.m in Sources */,
 				1A790EF5189A2AA200F9EC9D /* AppDelegate.m in Sources */,
+				1A790F2D18A0B9F600F9EC9D /* Draw2D.m in Sources */,
+				1A790F1E189A346300F9EC9D /* EnterViewController.m in Sources */,
+				1A790F3018A1216E00F9EC9D /* OprosViewController.m in Sources */,
 				1A790EF1189A2AA200F9EC9D /* main.m in Sources */,
+				1A790F2A189FC5D000F9EC9D /* DairyViewController.m in Sources */,
+				1AE0F82818A8F12200480DA6 /* AddFactorViewController.m in Sources */,
+				1A790F3318A20FB000F9EC9D /* CreateDairyViewController.m in Sources */,
+				1A790F27189A4B1E00F9EC9D /* Functions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +544,7 @@
 				1A790F15189A2AA300F9EC9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A790F16189A2AA300F9EC9D /* Build configuration list for PBXNativeTarget "medicaldiaryTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +553,7 @@
 				1A790F18189A2AA300F9EC9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
