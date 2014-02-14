@@ -10,6 +10,10 @@
 #import "Draw2D.h"
 
 @interface DairyViewController : UIViewController<UITabBarDelegate>
+{
+    UITextField *StartDateEdit;
+}
+
 + (void)AddFactors: (NSDictionary*)factors;
 @property (weak, nonatomic) IBOutlet UIImageView *Grafik;
 @property (weak, nonatomic) IBOutlet UITabBar *BottomView;
@@ -19,5 +23,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *ChangeFactor;
 @property (weak, nonatomic) IBOutlet UIView *AddFactorView;
 @property (weak, nonatomic) IBOutlet UIView *ChangeFactorView;
+@property (weak, nonatomic) IBOutlet UIView *MyView;
+@property (weak, nonatomic) IBOutlet UIButton *StartDateButton;
+@property (weak, nonatomic) IBOutlet UIButton *EndDateButton;
+@property (nonatomic, strong) IBOutlet UITextField *StartDateEdit;
+//@property (nonatomic,strong) UITextField *StartDateEdit1;
+@property (weak, nonatomic) IBOutlet UITextField *EndDateEdit;
+
 
 @end

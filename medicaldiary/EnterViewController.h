@@ -13,5 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *PasswordtextEdit;
 @property (weak, nonatomic) IBOutlet UIButton *EnterButton;
 @property (weak, nonatomic) IBOutlet UIButton *RegButton;
+@property (weak, nonatomic) IBOutlet UIView *RegButtonView;
+@property (weak, nonatomic) IBOutlet UIView *EnterButtonView;
 
 @end

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CreateDairyViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITabBar *BottomView;
 
 @end

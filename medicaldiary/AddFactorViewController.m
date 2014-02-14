@@ -23,6 +23,8 @@ NSMutableDictionary *mydata;
 UIView *vi1,*vi2;
 UIButton *button1,*button2;
 CustomScrollView *mainScroll;
+NSNumber *count;
+int cc=0;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,6 +61,7 @@ CustomScrollView *mainScroll;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    cc=0;
 	// Do any additional setup after loading the view.
     [Functions MyGradient:self.view];
     self.AddFactor.layer.masksToBounds=YES;
@@ -94,7 +97,14 @@ CustomScrollView *mainScroll;
     self.AddFactorView.layer.cornerRadius = 10.0;
     self.AddFactorView.layer.borderWidth = 0.0;
 
-    self.MainScroll.layer.zPosition=0;
+    [self.BottomView.items[0] setFinishedSelectedImage:[UIImage imageNamed:@"help_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"help"]];
+    
+    [self.BottomView.items[1] setFinishedSelectedImage:[UIImage imageNamed:@"dnevnik_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"dnevnik"]];
+    
+    [self.BottomView.items[2] setFinishedSelectedImage:[UIImage imageNamed:@"opros_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"opros"]];
+    
+    [self.BottomView.items[3] setFinishedSelectedImage:[UIImage imageNamed:@"shagomer_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"shagomer"]];
+    
     self.View1.layer.zPosition=1;
     self.BottomView.layer.zPosition=1;
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
@@ -127,66 +137,41 @@ CustomScrollView *mainScroll;
                 NSDictionary* legend = [cookie objectForKey:@"gettodaydata"];
                 
                 NSString *empty = [cookie objectForKey:@"empty"];
-                NSNumber *count = [cookie objectForKey:@"count"];
-                self.MainScroll.contentSize = CGSizeMake(self.view.frame.size.width,[count intValue]*250+40+100);
+                count = [cookie objectForKey:@"count"];
+                //self.MainScroll.contentSize = CGSizeMake(self.view.frame.size.width,[count intValue]*250+40+100);
                 
                 dataArray = [[NSMutableArray alloc] init];
                 
                 // Add some data for demo purposes.
                 for(int i=1;i<11;i++) [dataArray addObject:[NSString stringWithFormat:@"%i", i]];
-                if(0)//[empty intValue]==0)
+                /*if(0)//[empty intValue]==0)
                 {
                     for (id key in [name allKeys]) {
-                        //NSLog(@"%@ - %@",key,[name objectForKey:key]);
-                        /*NSArray* point = [name objectForKey:key];
-                         CGContextSetLineWidth(context, 1.5f);
-                         NSArray *c1 = [colors objectForKey:key];
-                         CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
-                         CGFloat components[] = {[c1[0] floatValue]/255.0f, [c1[1] floatValue]/255.0f, [c1[2] floatValue]/255.0f, 1.0f};
-                         CGColorRef color = CGColorCreate(colorspace, components);
-                         CGContextSetStrokeColorWithColor(context, color);
-                         NSString *dd = [point[0] objectForKey:@"date"];
-                         int i1=0;
-                         while(![dd isEqualToString:dates[i1]])
-                         {
-                         i1++;
-                         }
-                         
-                         //CGContextMoveToPoint(context, lof + (i1*(wid-lof)/(dates.count-1)), middle*10 - ([[point[0] objectForKey:@"value"] intValue]*middle));
-                         
-                         //NSLog(@"%@ - %d",[point[0] objectForKey:@"date"],[[point[0] objectForKey:@"value"] intValue]);
-                         for(int i=1;i<point.count;i++)
-                         {
-                         i1=0;
-                         dd = [point[i] objectForKey:@"date"];
-                         
-                         while(![dd isEqualToString:dates[i1]])
-                         {
-                         i1++;
-                         }
-                         CGContextMoveToPoint(context, lof + ((i1-1)*(wid-lof)/(dates.count-1)), middle*10 - ([[point[i-1] objectForKey:@"value"] intValue]*middle));
-                         CGContextAddLineToPoint(context, lof+(i1*(wid-lof)/(dates.count-1)), middle*10 - ([[point[i] objectForKey:@"value"] intValue]*middle));
-                         //CGContextAddLineToPoint(context, 270.0f, 5.0f);
-                         CGContextStrokePath(context);
-                         }*/
+
                     }
                 }
-                else
+                else*/
                 {
                     int i=0;
                     if(legend)
                     {
                         NSDictionary* legend1 = [legend objectForKey:@"legenda"];
                         self.View1.hidden = YES;
-                        CGRect newFrame = self.MainScroll.frame;
-                        newFrame.size.height = self.BottomView.frame.origin.y-self.MainScroll.frame.origin.y;
-                        self.MainScroll.frame = newFrame;
-                        NSLog(@"%f",self.BottomView.frame.origin.y-self.MainScroll.frame.origin.y);
-                        //self.MainScroll.frame.size = CGSizeMake(self.view.frame.size.width, [count intValue]*60+110);
                         
                         mainScroll = [[CustomScrollView alloc] initWithFrame:CGRectMake(0, 76, self.view.frame.size.width, self.BottomView.frame.origin.y-76)];
                         
-                        self.MainScroll.contentSize = CGSizeMake(self.view.frame.size.width, [count intValue]*60+110);
+                        mainScroll.contentSize = CGSizeMake(self.view.frame.size.width, [count intValue]*60+110);
+                        mainScroll.layer.zPosition=0;
+                        NSLog(@"%f",mainScroll.frame.size.height);
+                        [self.view addSubview:mainScroll];
+                        //mainScroll.backgroundColor = [Functions colorWithRGBHex:0xeaedf1];
+                        //mainScroll.layer.zPosition=0;
+                        mainScroll.pagingEnabled = YES;
+                        mainScroll.scrollEnabled = YES;
+                        [mainScroll setUserInteractionEnabled:YES];
+                        //[self.view sendSubviewToBack:mainScroll];
+
+
                         for (id key in [legend1 allKeys])
                         {
                             UITextField *text1 = [[UITextField alloc] initWithFrame:CGRectMake(60, 20+i*60,self.view.frame.size.width-120,40)];
@@ -201,21 +186,22 @@ CustomScrollView *mainScroll;
                             UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
                             text1.leftView = paddingView;
                             text1.leftViewMode = UITextFieldViewModeAlways;
-                            [self.MainScroll addSubview:text1];
+                            [mainScroll addSubview:text1];
+                            text1.tag = [key integerValue];
                             
                             i++;
                             
                         }
                         
-                        vi1 = [[UIView alloc] initWithFrame:CGRectMake((self.MainScroll.frame.size.width-162)/2, 20+20+i*60-1,162,38)];
+                        vi1 = [[UIView alloc] initWithFrame:CGRectMake((mainScroll.frame.size.width-162)/2, 20+i*60-1,162,38)];
                         vi1.layer.masksToBounds=YES;
                         vi1.layer.cornerRadius = 10.0;
                         vi1.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];;
                         vi1.layer.borderWidth = 0.0;
                         vi1.backgroundColor = [Functions colorWithRGBHex:0x569195];
-                        [self.MainScroll addSubview:vi1];
+                        [mainScroll addSubview:vi1];
                         
-                        button1 = [[UIButton alloc] initWithFrame:CGRectMake((self.MainScroll.frame.size.width-162)/2+1, 20+20+i*60,160,36)];
+                        button1 = [[UIButton alloc] initWithFrame:CGRectMake((mainScroll.frame.size.width-162)/2+1, 20+i*60,160,36)];
                         button1.layer.masksToBounds=YES;
                         button1.layer.cornerRadius = 10.0;
                         button1.titleLabel.text = @"Добавить фактор";
@@ -228,17 +214,17 @@ CustomScrollView *mainScroll;
                         [button1 addTarget:self action:@selector(addfactorfun:) forControlEvents:UIControlEventTouchUpInside];
                         button1.backgroundColor = [Functions colorWithRGBHex:0x569195];
                         button1.userInteractionEnabled=YES;
-                        [self.MainScroll addSubview:button1];
+                        [mainScroll addSubview:button1];
                         
-                        vi2 = [[UIView alloc] initWithFrame:CGRectMake((self.MainScroll.frame.size.width-124)/2, 20+20+i*60+50-1,124,50)];
+                        vi2 = [[UIView alloc] initWithFrame:CGRectMake((mainScroll.frame.size.width-124)/2, 20+i*60+50-1,124,50)];
                         vi2.layer.masksToBounds=YES;
                         vi2.layer.cornerRadius = 10.0;
                         vi2.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];;
                         vi2.layer.borderWidth = 0.0;
                         vi2.backgroundColor = [Functions colorWithRGBHex:0x569195];
-                        [self.MainScroll addSubview:vi2];
+                        [mainScroll addSubview:vi2];
                         
-                        button2 = [[UIButton alloc] initWithFrame:CGRectMake((self.MainScroll.frame.size.width-122)/2, 20+20+i*60+50,122,48)];
+                        button2 = [[UIButton alloc] initWithFrame:CGRectMake((mainScroll.frame.size.width-122)/2, 20+i*60+50,122,48)];
                         button2.layer.masksToBounds=YES;
                         button2.layer.cornerRadius = 10.0;
                         //button2.titleLabel.text = @"Сохранить";
@@ -248,20 +234,28 @@ CustomScrollView *mainScroll;
                         button2.titleLabel.font = [UIFont systemFontOfSize:20];
                         button2.tintColor = [UIColor whiteColor];
                         [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                        //[button1 addTarget:self action:@selector(senddata:) forControlEvents:UIControlEventTouchUpInside];
+                        [button2 addTarget:self action:@selector(senddata:) forControlEvents:UIControlEventTouchUpInside];
                         button2.backgroundColor = [Functions colorWithRGBHex:0x78aa45];
                         button2.userInteractionEnabled=YES;
-                        [self.MainScroll addSubview:button2];
+                        [mainScroll addSubview:button2];
 
                     }
                     else
                     {
-                        CGRect newFrame = self.MainScroll.frame;
-                        newFrame.size.height = self.BottomView.frame.origin.y-self.MainScroll.frame.origin.y-self.View1.frame.size.height;
-                        self.MainScroll.frame = newFrame;
+
+                        mainScroll = [[CustomScrollView alloc] initWithFrame:CGRectMake(0, 76, self.view.frame.size.width, self.BottomView.frame.origin.y-76-self.View1.frame.size.height)];
                         
-                        self.MainScroll.contentSize = CGSizeMake(self.view.frame.size.width, 320);
-                        
+                        mainScroll.contentSize = CGSizeMake(self.view.frame.size.width, 320);
+
+                        mainScroll.layer.zPosition=0;
+                        NSLog(@"%f",mainScroll.frame.size.height);
+                        [self.view addSubview:mainScroll];
+                        //mainScroll.backgroundColor = [Functions colorWithRGBHex:0xeaedf1];
+                        //mainScroll.layer.zPosition=0;
+                        mainScroll.pagingEnabled = YES;
+                        mainScroll.scrollEnabled = YES;
+                        [mainScroll setUserInteractionEnabled:YES];
+                        //[self.view sendSubviewToBack:mainScroll];
                         self.View1.hidden = NO;
                         
                         UITextField *text1 = [[UITextField alloc] initWithFrame:CGRectMake(60, 20,self.view.frame.size.width-120,40)];
@@ -271,12 +265,12 @@ CustomScrollView *mainScroll;
                         text1.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];
                         text1.backgroundColor = [UIColor whiteColor];
                         text1.layer.borderWidth = 1.0;
-                        text1.font = [UIFont systemFontOfSize:14];
+                        text1.font = [UIFont systemFontOfSize:10];
                         text1.userInteractionEnabled=YES;
                         UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
                         text1.leftView = paddingView;
                         text1.leftViewMode = UITextFieldViewModeAlways;
-                        [self.MainScroll addSubview:text1];
+                        [mainScroll addSubview:text1];
                         
                         UITextField *text2 = [[UITextField alloc] initWithFrame:CGRectMake(60, 80,self.view.frame.size.width-120,40)];
                         text2.layer.masksToBounds=YES;
@@ -285,12 +279,12 @@ CustomScrollView *mainScroll;
                         text2.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];
                         text2.backgroundColor = [UIColor whiteColor];
                         text2.layer.borderWidth = 1.0;
-                        text2.font = [UIFont systemFontOfSize:14];
+                        text2.font = [UIFont systemFontOfSize:10];
                         UIView *paddingView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
                         text2.userInteractionEnabled=YES;
                         text2.leftView = paddingView2;
                         text2.leftViewMode = UITextFieldViewModeAlways;
-                        [self.MainScroll addSubview:text2];
+                        [mainScroll addSubview:text2];
                         
                         UITextField *text3 = [[UITextField alloc] initWithFrame:CGRectMake(60, 140,self.view.frame.size.width-120,40)];
                         text3.layer.masksToBounds=YES;
@@ -299,23 +293,23 @@ CustomScrollView *mainScroll;
                         text3.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];
                         text3.backgroundColor = [UIColor whiteColor];
                         text3.layer.borderWidth = 1.0;
-                        text3.font = [UIFont systemFontOfSize:14];
+                        text3.font = [UIFont systemFontOfSize:10];
                         text3.userInteractionEnabled=YES;
                         UIView *paddingView3 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
                         text3.leftView = paddingView3;
                         text3.leftViewMode = UITextFieldViewModeAlways;
-                        [self.MainScroll addSubview:text3];
+                        [mainScroll addSubview:text3];
                         
                         
-                        vi1 = [[UIView alloc] initWithFrame:CGRectMake((self.MainScroll.frame.size.width-162)/2, 199,162,38)];
+                        vi1 = [[UIView alloc] initWithFrame:CGRectMake((mainScroll.frame.size.width-162)/2, 199,162,38)];
                         vi1.layer.masksToBounds=YES;
                         vi1.layer.cornerRadius = 10.0;
                         vi1.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];;
                         vi1.layer.borderWidth = 0.0;
                         vi1.backgroundColor = [Functions colorWithRGBHex:0x569195];
-                        [self.MainScroll addSubview:vi1];
+                        [mainScroll addSubview:vi1];
                         
-                        button1 = [[UIButton alloc] initWithFrame:CGRectMake((self.MainScroll.frame.size.width-162)/2+1, 200,160,36)];
+                        button1 = [[UIButton alloc] initWithFrame:CGRectMake((mainScroll.frame.size.width-162)/2+1, 200,160,36)];
                         button1.layer.masksToBounds=YES;
                         button1.layer.cornerRadius = 10.0;
                         button1.titleLabel.text = @"Добавить фактор";
@@ -328,17 +322,17 @@ CustomScrollView *mainScroll;
                         [button1 addTarget:self action:@selector(addfactorfun:) forControlEvents:UIControlEventTouchUpInside];
                         button1.backgroundColor = [Functions colorWithRGBHex:0x569195];
                         button1.userInteractionEnabled=YES;
-                        [self.MainScroll addSubview:button1];
+                        [mainScroll addSubview:button1];
                         
-                        vi2 = [[UIView alloc] initWithFrame:CGRectMake((self.MainScroll.frame.size.width-124)/2, 249,124,50)];
+                        vi2 = [[UIView alloc] initWithFrame:CGRectMake((mainScroll.frame.size.width-124)/2, 249,124,50)];
                         vi2.layer.masksToBounds=YES;
                         vi2.layer.cornerRadius = 10.0;
                         vi2.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];;
                         vi2.layer.borderWidth = 0.0;
                         vi2.backgroundColor = [Functions colorWithRGBHex:0x569195];
-                        [self.MainScroll addSubview:vi2];
+                        [mainScroll addSubview:vi2];
                         
-                        button2 = [[UIButton alloc] initWithFrame:CGRectMake((self.MainScroll.frame.size.width-122)/2, 250,122,48)];
+                        button2 = [[UIButton alloc] initWithFrame:CGRectMake((mainScroll.frame.size.width-122)/2, 250,122,48)];
                         button2.layer.masksToBounds=YES;
                         button2.layer.cornerRadius = 10.0;
                         //button2.titleLabel.text = @"Сохранить";
@@ -348,28 +342,89 @@ CustomScrollView *mainScroll;
                         button2.titleLabel.font = [UIFont systemFontOfSize:20];
                         button2.tintColor = [UIColor whiteColor];
                         [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                        //[button1 addTarget:self action:@selector(senddata:) forControlEvents:UIControlEventTouchUpInside];
+                        [button2 addTarget:self action:@selector(senddata:) forControlEvents:UIControlEventTouchUpInside];
                         button2.backgroundColor = [Functions colorWithRGBHex:0x78aa45];
                         button2.userInteractionEnabled=YES;
-                        [self.MainScroll addSubview:button2];
+                        [mainScroll addSubview:button2];
                     }
-                    /*UIButton *button1 = [[UIButton alloc] initWithFrame:CGRectMake(30, 40+30+250*i,self.view.frame.size.width-60,40)];
-                    button1.layer.masksToBounds=YES;
-                    button1.layer.cornerRadius = 5.0;
-                    button1.titleLabel.text = @"Send";
-                    button1.layer.borderColor = [[UIColor blackColor] CGColor];
-                    button1.layer.borderWidth = 1.0;
-                    button1.titleLabel.font = [UIFont systemFontOfSize:14];
-                    [button1 addTarget:self action:@selector(senddata:) forControlEvents:UIControlEventTouchUpInside];
-                    button1.userInteractionEnabled=YES;
-                    
-                    [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                    [button1 setTitleColor:[UIColor purpleColor] forState:UIControlStateHighlighted];
-                    [button1 setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
-                    [button1 setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-                    [self.MainScroll addSubview:button1];*/
                     
                 }
+                
+            }
+            else {
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка авторизации!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+            }
+        }
+        else {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка соединения!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }
+    }
+    else {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка авторизации!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+
+}
+
+- (void)senddata:(UIButton*)button
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *session = [userDefaults objectForKey:@"session"];
+    if ([session length]) {
+        NSLog(@"session = %@", [userDefaults objectForKey:@"session"]);
+        NSMutableDictionary *mydata = [[NSMutableDictionary alloc]
+                  initWithCapacity:[count intValue]];
+        for(UIView * subView in mainScroll.subviews )
+        {
+            if([subView isKindOfClass:[UITextField class]])
+            {
+                UITextField *mytext = (UITextField *)subView;
+                NSString *encodedString = [mytext.text stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+                [mydata setValue:encodedString forKey:[NSString stringWithFormat:@"%i",mytext.tag]];
+            }
+        }
+        //[mydata setValue:x forKey:key];
+        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:mydata options:kNilOptions error:Nil];
+        NSString *responseString=[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSString* myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=addnewfactor&session=%@&factors=%@", session, responseString];
+        NSLog(@"%@",myurl);
+        NSDictionary* cookie = [Functions SendGetRequest:myurl];
+        
+
+        
+        
+        
+        /*jsonData = [NSJSONSerialization dataWithJSONObject:mydata options:kNilOptions error:Nil];
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=addnewfactor&session=%@", session]]];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        responseString=[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        responseString=[NSString stringWithFormat:@"factors=%@", responseString];
+        NSLog(@"resp=%@",responseString);
+        [request setHTTPBody:[responseString dataUsingEncoding:NSUTF8StringEncoding]];
+        
+
+        NSLog(@"JSON summary: %@", [[NSString alloc] initWithData:jsonData
+                                                         encoding:NSUTF8StringEncoding]);
+        
+        NSData *responseData=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:Nil];
+        responseString=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+        
+        NSLog(@"response String is  %@",responseString);*/
+        
+
+        if(cookie)
+        {
+            NSString *result = cookie[@"result"];
+            NSLog(@"result: %@", result);
+            if(result.boolValue)
+            {
+                
                 
             }
             else {
@@ -400,12 +455,14 @@ CustomScrollView *mainScroll;
     text3.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];
     text3.backgroundColor = [UIColor whiteColor];
     text3.layer.borderWidth = 1.0;
-    text3.font = [UIFont systemFontOfSize:14];
+    text3.font = [UIFont systemFontOfSize:10];
     text3.userInteractionEnabled=YES;
     UIView *paddingView3 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
     text3.leftView = paddingView3;
     text3.leftViewMode = UITextFieldViewModeAlways;
-    [self.MainScroll addSubview:text3];
+    cc--;
+    text3.tag=cc;
+    [mainScroll addSubview:text3];
     
     CGRect newFrame = button1.frame;
     newFrame.origin.y = button1.frame.origin.y+60;
@@ -423,7 +480,10 @@ CustomScrollView *mainScroll;
     newFrame.origin.y = vi2.frame.origin.y+60;
     vi2.frame = newFrame;
 
-    self.MainScroll.contentSize = CGSizeMake(self.view.frame.size.width, self.MainScroll.contentSize.height+60);
+    mainScroll.contentSize = CGSizeMake(self.view.frame.size.width, mainScroll.contentSize.height+80);
+    
+    count = [NSNumber numberWithInt:count.intValue + 1];
+    
     
     
 }

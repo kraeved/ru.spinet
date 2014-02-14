@@ -9,12 +9,16 @@
 #import "DairyViewController.h"
 #import "Functions.h"
 #import "AppDelegate.h"
+#import "FPPopoverController.h"
+#import "PopoverViewController.h"
 
 @interface DairyViewController ()
 
 @end
 
 @implementation DairyViewController
+
+@synthesize StartDateEdit;//=_StartDateEdit;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,6 +27,12 @@
         // Custom initialization
     }
     return self;
+}
+
+- (IBAction)KeyboardHide:(id)sender
+{
+    [self.StartDateEdit resignFirstResponder];
+    [self.EndDateEdit resignFirstResponder];
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
@@ -170,6 +180,14 @@
     self.ChangeFactorView.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.ChangeFactorView.layer.borderWidth = 0.0;
     
+    [self.BottomView.items[0] setFinishedSelectedImage:[UIImage imageNamed:@"help_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"help"]];
+    
+    [self.BottomView.items[1] setFinishedSelectedImage:[UIImage imageNamed:@"dnevnik_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"dnevnik"]];
+    
+    [self.BottomView.items[2] setFinishedSelectedImage:[UIImage imageNamed:@"opros_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"opros"]];
+    
+    [self.BottomView.items[3] setFinishedSelectedImage:[UIImage imageNamed:@"shagomer_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"shagomer"]];
+    
 	// Do any additional setup after loading the view.
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *session = [userDefaults objectForKey:@"session"];
@@ -182,7 +200,42 @@
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка авторизации!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
+    
+    [self.StartDateButton addTarget:self action:@selector(popover:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.EndDateButton addTarget:self action:@selector(popover:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.StartDateEdit addTarget:self action:@selector(popover:) forControlEvents:UIControlEventEditingDidBegin];
+    
+    [self.EndDateEdit addTarget:self action:@selector(popover:) forControlEvents:UIControlEventEditingDidBegin];
+    
+    
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *vcs = appDelegate.window.rootViewController.childViewControllers;
+    //UIViewController *fvc  = [vcs objectAtIndex:0];
+    //UIViewController *svc = [vcs objectAtIndex:1];
+}
 
+-(void)popover:(id)sender
+{
+    //the controller we want to present as a popover
+    PopoverViewController *controller = [[PopoverViewController alloc] init];
+    
+    FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
+    
+    //popover.arrowDirection = FPPopoverArrowDirectionAny;
+    popover.tint = FPPopoverDefaultTint;
+    
+    //if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        popover.contentSize = CGSizeMake(self.view.frame.size.width, 320);
+    }
+    popover.arrowDirection = FPPopoverArrowDirectionUp;
+    popover.tint=FPPopoverGreenTint;
+    
+    //sender is the UIButton view
+    [popover presentPopoverFromView:sender];
+    
 }
 
 //изменить факторы

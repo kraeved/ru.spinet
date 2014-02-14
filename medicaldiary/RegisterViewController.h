@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *LoginText;
 @property (weak, nonatomic) IBOutlet UITextField *PassText;
 @property (weak, nonatomic) IBOutlet UITextField *MailText;
+@property (weak, nonatomic) IBOutlet UIView *RegButtonView;
 
 @end

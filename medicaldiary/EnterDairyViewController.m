@@ -19,6 +19,7 @@
 NSMutableArray *dataArray;
 NSMutableDictionary *mydata;
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -67,6 +68,15 @@ NSMutableDictionary *mydata;
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     [self.BottomView setSelectedItem:[self.BottomView.items objectAtIndex:1]];
     self.BottomView.delegate = self;
+    
+    [self.BottomView.items[0] setFinishedSelectedImage:[UIImage imageNamed:@"help_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"help"]];
+    
+    [self.BottomView.items[1] setFinishedSelectedImage:[UIImage imageNamed:@"dnevnik_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"dnevnik"]];
+    
+    [self.BottomView.items[2] setFinishedSelectedImage:[UIImage imageNamed:@"opros_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"opros"]];
+    
+    [self.BottomView.items[3] setFinishedSelectedImage:[UIImage imageNamed:@"shagomer_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"shagomer"]];
+    
     CGRect newFrame = self.MainScroll.frame;
     newFrame.size.height = self.BottomView.frame.origin.y;
     self.MainScroll.frame = newFrame;

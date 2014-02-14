@@ -51,11 +51,57 @@
 {
     [super viewDidLoad];
     [Functions MyGradient:self.view];
+    
+    [self.speedlabel setFont:[UIFont fontWithName:@"Pocket Calculator" size:20.0f]];
+    [self.callabel setFont:[UIFont fontWithName:@"Pocket Calculator" size:20.0f]];
+    [self.distlabel setFont:[UIFont fontWithName:@"Pocket Calculator" size:20.0f]];
+    [self.PedoTime setFont:[UIFont fontWithName:@"Pocket Calculator" size:60.0f]];
+    [self.steplabel setFont:[UIFont fontWithName:@"Pocket Calculator" size:60.0f]];
+    
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     [self.BottomView setSelectedItem:[self.BottomView.items objectAtIndex:1]];
     self.BottomView.delegate = self;
 	// Do any additional setup after loading the view.
     [self.BottomView setSelectedItem:[self.BottomView.items objectAtIndex:3]];
+    
+    self.startbutton.layer.masksToBounds=YES;
+    self.startbutton.layer.cornerRadius = 10.0;
+    self.startbutton.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.startbutton.layer.borderWidth = 3.0;
+    
+    self.startbuttonview.layer.masksToBounds=YES;
+    self.startbuttonview.layer.cornerRadius = 10.0;
+    self.startbuttonview.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.startbuttonview.layer.borderWidth = 0.0;
+
+    self.stopbutton.layer.masksToBounds=YES;
+    self.stopbutton.layer.cornerRadius = 10.0;
+    self.stopbutton.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.stopbutton.layer.borderWidth = 3.0;
+    
+    self.stopbuttonview.layer.masksToBounds=YES;
+    self.stopbuttonview.layer.cornerRadius = 10.0;
+    self.stopbuttonview.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.stopbuttonview.layer.borderWidth = 0.0;
+
+    self.resetbutton.layer.masksToBounds=YES;
+    self.resetbutton.layer.cornerRadius = 10.0;
+    self.resetbutton.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.resetbutton.layer.borderWidth = 3.0;
+    
+    self.resetbuttonview.layer.masksToBounds=YES;
+    self.resetbuttonview.layer.cornerRadius = 10.0;
+    self.resetbuttonview.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.resetbuttonview.layer.borderWidth = 0.0;
+    
+    [self.BottomView.items[0] setFinishedSelectedImage:[UIImage imageNamed:@"help_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"help"]];
+    
+    [self.BottomView.items[1] setFinishedSelectedImage:[UIImage imageNamed:@"dnevnik_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"dnevnik"]];
+    
+    [self.BottomView.items[2] setFinishedSelectedImage:[UIImage imageNamed:@"opros_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"opros"]];
+    
+    [self.BottomView.items[3] setFinishedSelectedImage:[UIImage imageNamed:@"shagomer_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"shagomer"]];
+
 }
 
 - (void)didReceiveMemoryWarning

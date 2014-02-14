@@ -34,10 +34,20 @@
     self.EnterButton.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.EnterButton.layer.borderWidth = 3.0;
     
+    self.EnterButtonView.layer.masksToBounds=YES;
+    self.EnterButtonView.layer.cornerRadius = 10.0;
+    self.EnterButtonView.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.EnterButtonView.layer.borderWidth = 0.0;
+    
     self.RegButton.layer.masksToBounds=YES;
     self.RegButton.layer.cornerRadius = 10.0;
     self.RegButton.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.RegButton.layer.borderWidth = 3.0;
+    
+    self.RegButtonView.layer.masksToBounds=YES;
+    self.RegButtonView.layer.cornerRadius = 10.0;
+    self.RegButtonView.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.RegButtonView.layer.borderWidth = 0.0;
     
     self.LoginTextEdit.layer.masksToBounds=YES;
     self.LoginTextEdit.layer.cornerRadius = 6.0;
@@ -56,6 +66,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(IBAction)KeyboardHide:(id)sender
+{
+    [sender resignFirstResponder];
+}
+
+- (IBAction)viewTap:(id)sender
+{
+    [self.LoginTextEdit resignFirstResponder];
+    [self.PasswordtextEdit resignFirstResponder];
+}
+
 - (IBAction)EnterButtonClick:(id)sender {
     //NSString *mydomain=@"localhost";
     if(self.LoginTextEdit.text.length>0 && self.PasswordtextEdit.text.length>0) {

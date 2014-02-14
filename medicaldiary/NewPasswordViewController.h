@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *Label1;
 @property (weak, nonatomic) IBOutlet UITextField *MailText;
 @property (weak, nonatomic) IBOutlet UIButton *SendButton;
+@property (weak, nonatomic) IBOutlet UIView *SendButtonView;
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XYPieChart.h"
 
-@interface ResultOprosViewController : UIViewController
+@interface ResultOprosViewController : UIViewController <XYPieChartDelegate, XYPieChartDataSource, UITabBarDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *QuesText;
+@property (weak, nonatomic) IBOutlet UITabBar *BottomView;
 @end

@@ -28,9 +28,13 @@
 {
     [super viewDidLoad];
     [Functions MyGradient:self.view];
+    UIImage *image = [UIImage imageNamed:@"logo"];
+    [self.LogoView setImage:image];
+    self.LogoView.layer.zPosition=1;
+    self.Indicator.layer.zPosition=2;
 	// Do any additional setup after loading the view.
     [self.Indicator startAnimating];
-    NSNumber *mode=0;
+    int mode=0;
     //Functions.ti
     //Functions *funcs = [Functions alloc];
     //проверка наличия настроек
@@ -43,8 +47,9 @@
         //проверка наличия интернета
         //проверка валидности кук
         //NSString *mydomain=@"localhost";
-         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-            NSString *myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=valid&session=%@", session];
+         //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            //NSString *myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=valid&session=%@", session];
+            NSString* myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=getnextopros&session=%@", session];
             NSDictionary* cookie = [Functions SendGetRequest:myurl];
             if(cookie)
             {
@@ -52,20 +57,24 @@
                 NSLog(@"result: %@", result);
                 if(result.boolValue)
                 {
-                    mode=[NSNumber numberWithInt:1];
+                    NSArray* variants = [cookie objectForKey:@"variants"];
+                    if(variants.count>0)
+                        mode=2;
+                    else
+                        mode=1;
                 }
                 else {
                     mode=0;
                 }
             }
-            else mode=[NSNumber numberWithInt:0];
+            else mode=0;
    
         
     } else {
         NSLog(@"Unlogin");
         mode=0;
     }
-   
+    
 	// Do any additional setup after loading the view.
     [UIView animateWithDuration:3.0 delay:2.0 options:0
                      animations:^
@@ -78,8 +87,11 @@
      {
          // По окончанию анимации выполним наш переход к стартовому экрану
          [self.Indicator stopAnimating];
-         if (mode.boolValue) {
+         if (mode==1) {
              [self performSegueWithIdentifier:@"DairyViewController" sender:self];
+         }
+         else if(mode==2) {
+             [self performSegueWithIdentifier:@"StartToOpros" sender:self];
          }
          else
          {

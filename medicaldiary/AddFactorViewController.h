@@ -20,6 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIView *CreateFactorsView;
 @property (weak, nonatomic) IBOutlet UITabBar *BottomView;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *MainScroll;
+
 
 @end

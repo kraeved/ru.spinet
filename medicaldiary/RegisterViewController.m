@@ -63,6 +63,11 @@
     self.MailText.layer.cornerRadius = 6.0;
     self.MailText.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];
     self.MailText.layer.borderWidth = 1.0;
+    
+    self.RegButtonView.layer.masksToBounds=YES;
+    self.RegButtonView.layer.cornerRadius = 10.0;
+    self.RegButtonView.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.RegButtonView.layer.borderWidth = 0.0;
 
     
 }
@@ -71,6 +76,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)KeyboardHide:(id)sender
+{
+    [self.LoginText resignFirstResponder];
+    [self.PassText resignFirstResponder];
+    [self.MailText resignFirstResponder];
 }
 
 - (IBAction)RegisterButton:(id)sender {

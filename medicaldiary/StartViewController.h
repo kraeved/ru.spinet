@@ -11,5 +11,6 @@
 @interface StartViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *Indicator;
 @property (strong, nonatomic) IBOutlet UIView *StartSplash;
+@property (weak, nonatomic) IBOutlet UIImageView *LogoView;
 
 @end

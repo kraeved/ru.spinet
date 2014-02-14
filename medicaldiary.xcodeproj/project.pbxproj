@@ -35,6 +35,14 @@
 		1A790F3C18A2105D00F9EC9D /* PedometrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F3B18A2105D00F9EC9D /* PedometrViewController.m */; };
 		1A790F3F18A21E0D00F9EC9D /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A790F3E18A21E0D00F9EC9D /* CustomScrollView.m */; };
 		1AE0F82818A8F12200480DA6 /* AddFactorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE0F82718A8F12200480DA6 /* AddFactorViewController.m */; };
+		1AE0F82A18AA405800480DA6 /* Pocket Calculator.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 1AE0F82918AA405800480DA6 /* Pocket Calculator.TTF */; };
+		1AE0F82D18AB8EDE00480DA6 /* MySingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE0F82C18AB8EDE00480DA6 /* MySingleton.m */; };
+		1AE0F83118AB935600480DA6 /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE0F83018AB935600480DA6 /* XYPieChart.m */; };
+		1AE0F83418AC954400480DA6 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE0F83318AC954400480DA6 /* MenuViewController.m */; };
+		1AE0F83C18ACDD7700480DA6 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE0F83718ACDD7700480DA6 /* FPPopoverController.m */; };
+		1AE0F83D18ACDD7700480DA6 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE0F83918ACDD7700480DA6 /* FPPopoverView.m */; };
+		1AE0F83E18ACDD7700480DA6 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE0F83B18ACDD7700480DA6 /* FPTouchView.m */; };
+		1AE0F84118ACE62D00480DA6 /* PopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE0F84018ACE62D00480DA6 /* PopoverViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +103,22 @@
 		1A790F3E18A21E0D00F9EC9D /* CustomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomScrollView.m; sourceTree = "<group>"; };
 		1AE0F82618A8F12200480DA6 /* AddFactorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFactorViewController.h; sourceTree = "<group>"; };
 		1AE0F82718A8F12200480DA6 /* AddFactorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFactorViewController.m; sourceTree = "<group>"; };
+		1AE0F82918AA405800480DA6 /* Pocket Calculator.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pocket Calculator.TTF"; path = "../../../../Downloads/Pocket Calculator.TTF"; sourceTree = "<group>"; };
+		1AE0F82B18AB8EDE00480DA6 /* MySingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySingleton.h; sourceTree = "<group>"; };
+		1AE0F82C18AB8EDE00480DA6 /* MySingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySingleton.m; sourceTree = "<group>"; };
+		1AE0F82F18AB935600480DA6 /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
+		1AE0F83018AB935600480DA6 /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
+		1AE0F83218AC954400480DA6 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		1AE0F83318AC954400480DA6 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		1AE0F83518ACDD7700480DA6 /* ARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARCMacros.h; path = "../../../Downloads/FPPopover-master/ARCMacros.h"; sourceTree = "<group>"; };
+		1AE0F83618ACDD7700480DA6 /* FPPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FPPopoverController.h; path = "../../../Downloads/FPPopover-master/FPPopoverController.h"; sourceTree = "<group>"; };
+		1AE0F83718ACDD7700480DA6 /* FPPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FPPopoverController.m; path = "../../../Downloads/FPPopover-master/FPPopoverController.m"; sourceTree = "<group>"; };
+		1AE0F83818ACDD7700480DA6 /* FPPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FPPopoverView.h; path = "../../../Downloads/FPPopover-master/FPPopoverView.h"; sourceTree = "<group>"; };
+		1AE0F83918ACDD7700480DA6 /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FPPopoverView.m; path = "../../../Downloads/FPPopover-master/FPPopoverView.m"; sourceTree = "<group>"; };
+		1AE0F83A18ACDD7700480DA6 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FPTouchView.h; path = "../../../Downloads/FPPopover-master/FPTouchView.h"; sourceTree = "<group>"; };
+		1AE0F83B18ACDD7700480DA6 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FPTouchView.m; path = "../../../Downloads/FPPopover-master/FPTouchView.m"; sourceTree = "<group>"; };
+		1AE0F83F18ACE62D00480DA6 /* PopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverViewController.h; sourceTree = "<group>"; };
+		1AE0F84018ACE62D00480DA6 /* PopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +148,18 @@
 		1A790ED8189A2AA200F9EC9D = {
 			isa = PBXGroup;
 			children = (
+				1AE0F83F18ACE62D00480DA6 /* PopoverViewController.h */,
+				1AE0F84018ACE62D00480DA6 /* PopoverViewController.m */,
+				1AE0F83518ACDD7700480DA6 /* ARCMacros.h */,
+				1AE0F83618ACDD7700480DA6 /* FPPopoverController.h */,
+				1AE0F83718ACDD7700480DA6 /* FPPopoverController.m */,
+				1AE0F83818ACDD7700480DA6 /* FPPopoverView.h */,
+				1AE0F83918ACDD7700480DA6 /* FPPopoverView.m */,
+				1AE0F83A18ACDD7700480DA6 /* FPTouchView.h */,
+				1AE0F83B18ACDD7700480DA6 /* FPTouchView.m */,
+				1AE0F82E18AB935600480DA6 /* XYPieChart */,
+				1AE0F82B18AB8EDE00480DA6 /* MySingleton.h */,
+				1AE0F82C18AB8EDE00480DA6 /* MySingleton.m */,
 				1A790F3D18A21E0D00F9EC9D /* CustomScrollView.h */,
 				1A790F3E18A21E0D00F9EC9D /* CustomScrollView.m */,
 				1A790F2B18A0B9F600F9EC9D /* Draw2D.h */,
@@ -161,6 +197,8 @@
 				1A790EF3189A2AA200F9EC9D /* AppDelegate.h */,
 				1A790EF4189A2AA200F9EC9D /* AppDelegate.m */,
 				1A790EF6189A2AA200F9EC9D /* Main.storyboard */,
+				1AE0F83218AC954400480DA6 /* MenuViewController.h */,
+				1AE0F83318AC954400480DA6 /* MenuViewController.m */,
 				1AE0F82618A8F12200480DA6 /* AddFactorViewController.h */,
 				1AE0F82718A8F12200480DA6 /* AddFactorViewController.m */,
 				1A790F3A18A2105D00F9EC9D /* PedometrViewController.h */,
@@ -196,6 +234,7 @@
 		1A790EEB189A2AA200F9EC9D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1AE0F82918AA405800480DA6 /* Pocket Calculator.TTF */,
 				1A790EEC189A2AA200F9EC9D /* medicaldiary-Info.plist */,
 				1A790EED189A2AA200F9EC9D /* InfoPlist.strings */,
 				1A790EF0189A2AA200F9EC9D /* main.m */,
@@ -220,6 +259,16 @@
 				1A790F0C189A2AA200F9EC9D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1AE0F82E18AB935600480DA6 /* XYPieChart */ = {
+			isa = PBXGroup;
+			children = (
+				1AE0F82F18AB935600480DA6 /* XYPieChart.h */,
+				1AE0F83018AB935600480DA6 /* XYPieChart.m */,
+			);
+			name = XYPieChart;
+			path = "../../../Downloads/XYPieChart-master/XYPieChart";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A790EFD189A2AA200F9EC9D /* Images.xcassets in Resources */,
+				1AE0F82A18AA405800480DA6 /* Pocket Calculator.TTF in Resources */,
 				1A790EEF189A2AA200F9EC9D /* InfoPlist.strings in Resources */,
 				1A790EF8189A2AA200F9EC9D /* Main.storyboard in Resources */,
 			);
@@ -319,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AE0F83D18ACDD7700480DA6 /* FPPopoverView.m in Sources */,
 				1A790EFB189A2AA200F9EC9D /* ViewController.m in Sources */,
 				1A790F21189A349300F9EC9D /* RegisterViewController.m in Sources */,
 				1A790F3F18A21E0D00F9EC9D /* CustomScrollView.m in Sources */,
@@ -328,14 +379,20 @@
 				1A790F24189A34A800F9EC9D /* NewPasswordViewController.m in Sources */,
 				1A790F1B189A2E2800F9EC9D /* StartViewController.m in Sources */,
 				1A790EF5189A2AA200F9EC9D /* AppDelegate.m in Sources */,
+				1AE0F83E18ACDD7700480DA6 /* FPTouchView.m in Sources */,
+				1AE0F83C18ACDD7700480DA6 /* FPPopoverController.m in Sources */,
+				1AE0F84118ACE62D00480DA6 /* PopoverViewController.m in Sources */,
 				1A790F2D18A0B9F600F9EC9D /* Draw2D.m in Sources */,
 				1A790F1E189A346300F9EC9D /* EnterViewController.m in Sources */,
 				1A790F3018A1216E00F9EC9D /* OprosViewController.m in Sources */,
 				1A790EF1189A2AA200F9EC9D /* main.m in Sources */,
+				1AE0F82D18AB8EDE00480DA6 /* MySingleton.m in Sources */,
+				1AE0F83118AB935600480DA6 /* XYPieChart.m in Sources */,
 				1A790F2A189FC5D000F9EC9D /* DairyViewController.m in Sources */,
 				1AE0F82818A8F12200480DA6 /* AddFactorViewController.m in Sources */,
 				1A790F3318A20FB000F9EC9D /* CreateDairyViewController.m in Sources */,
 				1A790F27189A4B1E00F9EC9D /* Functions.m in Sources */,
+				1AE0F83418AC954400480DA6 /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
