@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EnterDairyViewController : UIViewController<UITabBarDelegate>
+@interface EnterDairyViewController : UIViewController<UITabBarDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITabBar *BottomView;
 
+@property (weak, nonatomic) IBOutlet UIButton *OkButton;
+@property (weak, nonatomic) IBOutlet UIView *OkButtonView;
 @property (weak, nonatomic) IBOutlet UIScrollView *MainScroll;
+@property (weak, nonatomic) IBOutlet UITextView *CommentEdit;
+@property (weak, nonatomic) IBOutlet UIView *CommentView;
 @end

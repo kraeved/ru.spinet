@@ -72,13 +72,14 @@
     NSLog(@"click");
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     DairyViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"DairyViewController"];
-    //viewController.StartDateEdit.delegate=self;
-    viewController.StartDateEdit.text=@"fffffff";
-    [viewController.StartDateEdit setText:@"jjjjjj"];
+    //viewController.delegate=self;
+    viewController.StartDateEdit1.text=@"fffffff";
+    [viewController.StartDateEdit1 setText:@"jjjjjj"];
     
     DairyViewController *dview = [[DairyViewController alloc] init];
     //dview.StartDateEdit.delegate=self;
-    dview.StartDateEdit.text=@"kkkkk";
+    dview.StartDateEdit1.text=@"kkkkk";
+    NSLog(@"%@",viewController.StartDateEdit1.text);
     
 }
 

@@ -36,14 +36,41 @@ gradient.frame = myview.bounds;
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-    
+    NSLog(@"1");
     NSURLResponse *response;
     NSDictionary* cookie;
     NSData *GETReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+    //NSString *responseString=[[NSString alloc] initWithData:GETReply encoding:NSUTF8StringEncoding];
+    //NSLog(@"yyyyyy %@",responseString);
     if(GETReply)
     {
         cookie = [NSJSONSerialization JSONObjectWithData:GETReply options:nil error:nil];
+        
     }
+    return cookie;
+}
+
++ (NSDictionary*) SendPostRequest:(NSString*) url POST:(NSData*)postData
+{
+
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:postData];
+    [request setValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    NSLog(@"1");
+    NSURLResponse *response;
+    NSDictionary* cookie;
+    NSData *GETReply = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+    //NSString *responseString=[[NSString alloc] initWithData:GETReply encoding:NSUTF8StringEncoding];
+    //NSLog(@"yyyyyy %@",responseString);
+    if(GETReply)
+    {
+        cookie = [NSJSONSerialization JSONObjectWithData:GETReply options:nil error:nil];
+        
+    }
+    //NSDictionary *cookie;
     return cookie;
 }
 

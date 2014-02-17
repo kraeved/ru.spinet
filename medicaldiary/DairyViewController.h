@@ -11,7 +11,7 @@
 
 @interface DairyViewController : UIViewController<UITabBarDelegate>
 {
-    UITextField *StartDateEdit;
+    UITextField *StartDateEdit1;
 }
 
 + (void)AddFactors: (NSDictionary*)factors;
@@ -26,8 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIView *MyView;
 @property (weak, nonatomic) IBOutlet UIButton *StartDateButton;
 @property (weak, nonatomic) IBOutlet UIButton *EndDateButton;
-@property (nonatomic, strong) IBOutlet UITextField *StartDateEdit;
-//@property (nonatomic,strong) UITextField *StartDateEdit1;
+@property (nonatomic, weak) IBOutlet UITextField *StartDateEdit;
+@property (nonatomic,strong) UITextField *StartDateEdit1;
 @property (weak, nonatomic) IBOutlet UITextField *EndDateEdit;
 
 

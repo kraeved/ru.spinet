@@ -12,5 +12,6 @@
 + (void) MyGradient:(UIView*)myview;
 + (void) MyGradientForView:(UIView*)myview;
 + (NSDictionary*) SendGetRequest:(NSString*) url;
++ (NSDictionary*) SendPostRequest:(NSString*) url POST:(NSData*)postData;
 + (UIColor *)colorWithRGBHex:(UInt32)hex;
 @end

@@ -184,7 +184,7 @@ NSArray *oproses;
     if ([session length]) {
         NSLog(@"session = %@", [userDefaults objectForKey:@"session"]);
         NSString* myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=getoprosresult&session=%@", session];
-        
+        NSLog(@"%@",myurl);
         NSDictionary* cookie = [Functions SendGetRequest:myurl];
         if(cookie)
         {
@@ -343,6 +343,7 @@ NSArray *oproses;
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
     self.BottomView.delegate = self;
     [self.BottomView setSelectedItem:[self.BottomView.items objectAtIndex:2]];
+    
     self.sendotvet.layer.masksToBounds=YES;
     self.sendotvet.layer.cornerRadius = 10.0;
     self.sendotvet.layer.borderColor = [[UIColor whiteColor] CGColor];

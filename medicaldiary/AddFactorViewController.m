@@ -133,13 +133,9 @@ int cc=0;
             if(result.boolValue)
             {
                 
-                NSDictionary* name = [cookie objectForKey:@"grafik_data"];
-                NSDictionary* legend = [cookie objectForKey:@"gettodaydata"];
-                
+                NSArray* legend = [cookie objectForKey:@"gettodaydata"];
                 NSString *empty = [cookie objectForKey:@"empty"];
                 count = [cookie objectForKey:@"count"];
-                //self.MainScroll.contentSize = CGSizeMake(self.view.frame.size.width,[count intValue]*250+40+100);
-                
                 dataArray = [[NSMutableArray alloc] init];
                 
                 // Add some data for demo purposes.
@@ -153,9 +149,8 @@ int cc=0;
                 else*/
                 {
                     int i=0;
-                    if(legend)
+                    if(count)
                     {
-                        NSDictionary* legend1 = [legend objectForKey:@"legenda"];
                         self.View1.hidden = YES;
                         
                         mainScroll = [[CustomScrollView alloc] initWithFrame:CGRectMake(0, 76, self.view.frame.size.width, self.BottomView.frame.origin.y-76)];
@@ -172,12 +167,12 @@ int cc=0;
                         //[self.view sendSubviewToBack:mainScroll];
 
 
-                        for (id key in [legend1 allKeys])
+                        for (i=0;i<[count intValue];i++)
                         {
                             UITextField *text1 = [[UITextField alloc] initWithFrame:CGRectMake(60, 20+i*60,self.view.frame.size.width-120,40)];
                             text1.layer.masksToBounds=YES;
                             text1.layer.cornerRadius = 5.0;
-                            text1.text = [NSString stringWithFormat:@"%@", [legend1 objectForKey:key]];
+                            text1.text = [NSString stringWithFormat:@"%@", [legend[i] objectForKey:@"text"]];
                             text1.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];
                             text1.backgroundColor = [UIColor whiteColor];
                             text1.layer.borderWidth = 1.0;
@@ -187,9 +182,9 @@ int cc=0;
                             text1.leftView = paddingView;
                             text1.leftViewMode = UITextFieldViewModeAlways;
                             [mainScroll addSubview:text1];
-                            text1.tag = [key integerValue];
+                            text1.tag = [[legend[i] objectForKey:@"tip"] intValue];
                             
-                            i++;
+                            //i++;
                             
                         }
                         
@@ -388,7 +383,14 @@ int cc=0;
         //[mydata setValue:x forKey:key];
         NSData* jsonData = [NSJSONSerialization dataWithJSONObject:mydata options:kNilOptions error:Nil];
         NSString *responseString=[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSString* myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=addnewfactor&session=%@&factors=%@", session, responseString];
+        
+        NSString *ur=@"";
+        for (id key in [mydata allKeys])
+        {
+            ur = [NSString stringWithFormat:@"%@&factor[%@]=%@",ur, key, [mydata objectForKey:key]];
+        }
+        
+        NSString* myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=addnewfactor&session=%@%@", session, ur];
         NSLog(@"%@",myurl);
         NSDictionary* cookie = [Functions SendGetRequest:myurl];
         

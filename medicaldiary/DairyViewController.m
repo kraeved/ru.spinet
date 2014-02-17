@@ -18,7 +18,7 @@
 
 @implementation DairyViewController
 
-@synthesize StartDateEdit;//=_StartDateEdit;
+@synthesize StartDateEdit1;//=_StartDateEdit;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -209,6 +209,7 @@
     
     [self.EndDateEdit addTarget:self action:@selector(popover:) forControlEvents:UIControlEventEditingDidBegin];
     
+    self.StartDateEdit=self.StartDateEdit1;
     
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *vcs = appDelegate.window.rootViewController.childViewControllers;
@@ -240,10 +241,10 @@
 
 //изменить факторы
 - (IBAction)EnterData:(id)sender {
-    /*
+    
      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"EnterDairyViewController"];
-    [self presentViewController:viewController animated:NO completion:nil];*/
+    [self presentViewController:viewController animated:NO completion:nil];
 }
 
 //добавить фактор
