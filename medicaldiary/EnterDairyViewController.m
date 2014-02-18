@@ -70,7 +70,7 @@ NSMutableDictionary *mydata, *mycomm;
         NSString *dateString = [dateFormat stringFromDate:date];
         
         NSString* myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=gettodaydata&session=%@&date=%@", session, dateString];
-        
+        NSLog(@"%@",myurl);
         NSDictionary* cookie = [Functions SendGetRequest:myurl];
         if(cookie)
         {
@@ -482,8 +482,9 @@ NSMutableDictionary *mydata, *mycomm;
         }
         for (id key in [mycomm allKeys])
         {
-            ur = [NSString stringWithFormat:@"%@&comm[%@]=%@",ur, key, [[mycomm objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+            ur = [NSString stringWithFormat:@"%@&comm[%@]=%@",ur, key, [[mycomm objectForKey:key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
+        //[mytext.text stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
         NSString* myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=changefactors&session=%@%@", session, ur];
         NSLog(@"%@",myurl);
         NSDictionary* cookie= [Functions SendGetRequest:myurl];

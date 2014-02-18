@@ -20,6 +20,10 @@
 
 @synthesize StartDateEdit1;//=_StartDateEdit;
 
+float AdvSearchViewY=0;
+float AdvSearchViewPath=0;
+int AdvSearchViewOpen=0;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -180,6 +184,29 @@
     self.ChangeFactorView.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.ChangeFactorView.layer.borderWidth = 0.0;
     
+    self.InstrView.layer.zPosition=15;
+    self.InstrViewBack.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];
+    self.InstrViewBack.layer.borderWidth = 0.5;
+    
+    self.InstrButton.highlighted = NO;
+    
+    CGRect newFrame = self.InstrView.frame;
+    newFrame.size.height = self.BottomView.frame.origin.y;
+    self.InstrView.frame = newFrame;
+    
+    newFrame = self.InstrViewBack.frame;
+    newFrame.size.height = self.BottomView.frame.origin.y;
+    self.InstrViewBack.frame = newFrame;
+
+    self.InstrButton.layer.zPosition=20;
+    self.InstrView.layer.zPosition=18;
+    self.InstrViewBack.layer.zPosition=19;
+    
+    [self.view sendSubviewToBack:self.MainScroll];
+    self.MainScroll.layer.zPosition=2;
+    //[self.InstrView insertSubview:self.InstrButton belowSubview:self.InstrViewBack];
+    
+    
     [self.BottomView.items[0] setFinishedSelectedImage:[UIImage imageNamed:@"help_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"help"]];
     
     [self.BottomView.items[1] setFinishedSelectedImage:[UIImage imageNamed:@"dnevnik_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"dnevnik"]];
@@ -211,10 +238,118 @@
     
     self.StartDateEdit=self.StartDateEdit1;
     
+    //self.InstrConstraint.constant = self.BottomView.frame.origin.y;
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSArray *vcs = appDelegate.window.rootViewController.childViewControllers;
     //UIViewController *fvc  = [vcs objectAtIndex:0];
     //UIViewController *svc = [vcs objectAtIndex:1];
+}
+
+- (IBAction)AdvSearchDragOutside:(UIButton *)sender forEvent:(UIEvent *)event {
+    
+    UITouch *touch = [[event touchesForView:sender] anyObject];
+    CGPoint previousLocation = [touch previousLocationInView:sender];
+    CGPoint location = [touch locationInView:sender];
+    
+    CGFloat delta_y = location.y - previousLocation.y;
+    //NSLog(@"%f-%f %f-%f",location.y,delta_y,location.x,delta_x);
+    AdvSearchViewPath=AdvSearchViewPath+delta_y;
+}
+
+- (IBAction)AdvSearchDragInside:(UIButton *)sender forEvent:(UIEvent *)event {
+    
+    UITouch *touch = [[event touchesForView:sender] anyObject];
+    CGPoint previousLocation = [touch previousLocationInView:sender];
+    CGPoint location = [touch locationInView:sender];
+    
+    CGFloat delta_y = location.x - previousLocation.x;
+    
+    //NSLog(@"%f-%f %f",self.InstrView.frame.origin.x,delta_y,location.x);
+    if(self.InstrView.frame.origin.x<=0.0)
+    {
+        [self.InstrView setFrame:CGRectMake(self.InstrView.frame.origin.x+delta_y,0,self.InstrView.frame.size.width,self.InstrView.frame.size.height)];//= yy+delta_y;
+        AdvSearchViewPath=AdvSearchViewPath+fabsf(delta_y);
+    }
+    
+    //CGSize size = CGSizeMake(self.InstrView.frame.size.width,self.InstrView.frame.size.height);
+}
+
+- (IBAction)AdvSearchTouchDown:(UIButton *)sender forEvent:(UIEvent *)event {
+    //NSLog(@"Path=%f",AdvSearchViewPath);
+    AdvSearchViewY=self.InstrView.frame.origin.x;
+}
+
+- (IBAction)AdvSearchTouchUpInside:(UIButton *)sender forEvent:(UIEvent *)event {
+    //NSLog(@"Path=%f",AdvSearchViewPath);
+    if(!AdvSearchViewOpen)
+    {
+        if(AdvSearchViewPath<50.0)
+        {
+            CGRect newFrame = self.InstrView.frame;
+            newFrame.origin.x = AdvSearchViewY;
+            [UIView animateWithDuration:0.25
+                             animations:^{
+                                 self.InstrView.frame = newFrame;
+                             }
+                             completion:^(BOOL finished){
+                                 
+                                 AdvSearchViewOpen=0;
+                                 AdvSearchViewPath=0;
+                             }];
+        }
+        else
+        {
+            CGRect newFrame = self.InstrView.frame;
+            newFrame.origin.x = 0;
+            [UIView animateWithDuration:0.25
+                             animations:^{
+                                 self.InstrView.frame = newFrame;
+                             }
+                             completion:^(BOOL finished){
+                                 
+                                 AdvSearchViewOpen=1;
+                                 AdvSearchViewPath=0;
+                             }];
+        }
+    }
+    else
+    {
+        if(AdvSearchViewPath<20.0)
+        {
+            CGRect newFrame = self.InstrView.frame;
+            newFrame.origin.x = AdvSearchViewY;
+            [UIView animateWithDuration:0.25
+                             animations:^{
+                                 self.InstrView.frame = newFrame;
+                             }
+                             completion:^(BOOL finished){
+                                 
+                                 AdvSearchViewOpen=1;
+                                 AdvSearchViewPath=0;
+                             }];
+        }
+        else
+        {
+            CGRect newFrame = self.InstrView.frame;
+            newFrame.origin.x = -265;
+            [UIView animateWithDuration:0.25
+                             animations:^{
+                                 self.InstrView.frame = newFrame;
+                             }
+                             completion:^(BOOL finished){
+                                 
+                                 AdvSearchViewOpen=0;
+                                 AdvSearchViewPath=0;
+                             }];
+        }
+        
+    }
+    
+}
+
+- (IBAction)buttonclick:(id)sender {
+    
+    //NSLog(@"fffff");
 }
 
 -(void)popover:(id)sender

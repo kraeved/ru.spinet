@@ -29,6 +29,10 @@
 @property (nonatomic, weak) IBOutlet UITextField *StartDateEdit;
 @property (nonatomic,strong) UITextField *StartDateEdit1;
 @property (weak, nonatomic) IBOutlet UITextField *EndDateEdit;
+@property (weak, nonatomic) IBOutlet UIView *InstrView;
+@property (weak, nonatomic) IBOutlet UIView *InstrViewBack;
+@property (weak, nonatomic) IBOutlet UIButton *InstrButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *InstrConstraint;
 
 
 @end

@@ -31,6 +31,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *session = [userDefaults objectForKey:@"session"];
     NSString* myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=grafik_data&session=%@", session];
+    NSLog(@"%@",myurl);
     /*if ([start length]) {
         myurl = [NSString stringWithFormat:@"%@&start_date=%@",myurl, start];
     }

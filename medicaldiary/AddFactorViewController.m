@@ -43,6 +43,12 @@ int cc=0;
         [self presentViewController:viewController animated:NO completion:nil];
         
     }
+    if(item.tag==1)
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"DairyViewController"];
+        [self presentViewController:viewController animated:NO completion:nil];
+    }
     if(item.tag==2)
     {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -153,7 +159,7 @@ int cc=0;
                     {
                         self.View1.hidden = YES;
                         
-                        mainScroll = [[CustomScrollView alloc] initWithFrame:CGRectMake(0, 76, self.view.frame.size.width, self.BottomView.frame.origin.y-76)];
+                        mainScroll = [[CustomScrollView alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, self.BottomView.frame.origin.y-70)];
                         
                         mainScroll.contentSize = CGSizeMake(self.view.frame.size.width, [count intValue]*60+110);
                         mainScroll.layer.zPosition=0;
@@ -392,33 +398,7 @@ int cc=0;
         
         NSString* myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=addnewfactor&session=%@%@", session, ur];
         NSLog(@"%@",myurl);
-        NSDictionary* cookie = [Functions SendGetRequest:myurl];
-        
-
-        
-        
-        
-        /*jsonData = [NSJSONSerialization dataWithJSONObject:mydata options:kNilOptions error:Nil];
-        
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=addnewfactor&session=%@", session]]];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        responseString=[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        responseString=[NSString stringWithFormat:@"factors=%@", responseString];
-        NSLog(@"resp=%@",responseString);
-        [request setHTTPBody:[responseString dataUsingEncoding:NSUTF8StringEncoding]];
-        
-
-        NSLog(@"JSON summary: %@", [[NSString alloc] initWithData:jsonData
-                                                         encoding:NSUTF8StringEncoding]);
-        
-        NSData *responseData=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:Nil];
-        responseString=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        
-        NSLog(@"response String is  %@",responseString);*/
-        
+        NSDictionary* cookie = [Functions SendGetRequest:myurl];        
 
         if(cookie)
         {
@@ -427,7 +407,9 @@ int cc=0;
             if(result.boolValue)
             {
                 
-                
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"DairyViewController"];
+                [self presentViewController:viewController animated:NO completion:nil];
             }
             else {
                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка авторизации!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
