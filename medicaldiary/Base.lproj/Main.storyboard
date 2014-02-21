@@ -99,7 +99,7 @@
                                         <rect key="frame" x="1" y="1" width="192" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.42352941179999998" green="0.66666666669999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Выйти из приложения">
+                                        <state key="normal" title="Сменить пользователя">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </state>
@@ -187,49 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l8f-H1-n5M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063" y="-1132"/>
-        </scene>
-        <!--Create Dairy View Controller-->
-        <scene sceneID="sRP-l6-EH0">
-            <objects>
-                <viewController storyboardIdentifier="CreateDairyViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NaD-7D-ctr" customClass="CreateDairyViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ShX-fB-zZg"/>
-                        <viewControllerLayoutGuide type="bottom" id="chS-hf-f0S"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lhd-Ca-GxA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWW-dJ-q6u">
-                                <rect key="frame" x="0.0" y="519" width="320" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <tabBarItem title="" id="eKZ-Q7-iq2">
-                                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
-                                    </tabBarItem>
-                                    <tabBarItem tag="1" title="" id="wyM-ZD-i8g">
-                                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
-                                    </tabBarItem>
-                                    <tabBarItem tag="2" title="" id="qpt-66-fpm">
-                                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
-                                    </tabBarItem>
-                                    <tabBarItem tag="3" title="" id="2Zs-w5-I4K">
-                                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
-                                    </tabBarItem>
-                                </items>
-                            </tabBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="BottomView" destination="kWW-dJ-q6u" id="D7j-nw-c2x"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BXM-OT-Tg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="29" y="852"/>
+            <point key="canvasLocation" x="1741" y="898"/>
         </scene>
         <!--Enter Dairy View Controller-->
         <scene sceneID="F1M-fx-SzJ">
@@ -290,7 +248,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJg-LT-XXp">
+                            <tabBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJg-LT-XXp">
                                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -311,6 +269,9 @@
                             </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="yJg-LT-XXp" secondAttribute="bottom" id="PYw-eQ-KcR"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="BottomView" destination="yJg-LT-XXp" id="BRu-Sr-jZ4"/>
@@ -323,7 +284,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROX-B8-bEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="395" y="848"/>
+            <point key="canvasLocation" x="-216" y="898"/>
         </scene>
         <!--Opros View Controller-->
         <scene sceneID="3vi-fq-4PU">
@@ -337,7 +298,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kp7-t0-RPU">
+                            <tabBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kp7-t0-RPU">
                                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -388,6 +349,9 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Kp7-t0-RPU" secondAttribute="bottom" id="FWL-zD-NYb"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="BottomView" destination="Kp7-t0-RPU" id="DIl-uq-DEI"/>
@@ -400,7 +364,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8YS-e3-y7o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="775" y="844"/>
+            <point key="canvasLocation" x="275" y="898"/>
         </scene>
         <!--Result Opros View Controller-->
         <scene sceneID="aJT-ct-M9x">
@@ -414,7 +378,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lez-gE-XdE">
+                            <tabBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lez-gE-XdE">
                                 <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -445,6 +409,9 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Lez-gE-XdE" secondAttribute="bottom" id="YvT-cg-NBZ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="BottomView" destination="Lez-gE-XdE" id="bPM-t8-EOX"/>
@@ -452,38 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuR-37-p6s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1147" y="846"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="vid-jo-2Ry">
-            <objects>
-                <viewController id="Uqu-GI-emn" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7Su-12-5oo"/>
-                        <viewControllerLayoutGuide type="bottom" id="e3A-vf-yyD"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BgY-Ap-E53">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRy-LY-LgB">
-                                <rect key="frame" x="0.0" y="519" width="320" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <tabBarItem title="Меню" id="97h-3P-pOM"/>
-                                    <tabBarItem tag="1" title="Дневник" id="KZE-CZ-AvZ"/>
-                                    <tabBarItem tag="2" title="Опрос" id="0Rc-nn-YKQ"/>
-                                    <tabBarItem tag="3" title="Шагомер" id="126-uM-1aN"/>
-                                </items>
-                            </tabBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hDi-cB-D32" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1549" y="846"/>
+            <point key="canvasLocation" x="739" y="898"/>
         </scene>
         <!--Pedometr View Controller-->
         <scene sceneID="4X7-Ek-vzw">
@@ -691,7 +627,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qCA-oc-lAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1933" y="840"/>
+            <point key="canvasLocation" x="1261" y="898"/>
         </scene>
         <!--Enter View Controller-->
         <scene sceneID="oHc-A3-Rav">
@@ -815,7 +751,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Siv-YF-iiq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="517" y="-155"/>
+            <point key="canvasLocation" x="415" y="29"/>
         </scene>
         <!--New Password View Controller-->
         <scene sceneID="DEs-G1-gyS">
@@ -897,7 +833,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WbF-B8-Ihi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085" y="214"/>
+            <point key="canvasLocation" x="1033" y="230"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="wT8-fk-Ydh">
@@ -1014,12 +950,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIe-rP-MFZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085" y="-442"/>
+            <point key="canvasLocation" x="1033" y="-500"/>
         </scene>
         <!--Add Factor View Controller-->
         <scene sceneID="81A-Pe-bex">
             <objects>
-                <viewController id="5ux-lG-50G" customClass="AddFactorViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddFactorViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5ux-lG-50G" customClass="AddFactorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GKS-Wy-dlp"/>
                         <viewControllerLayoutGuide type="bottom" id="2z1-5g-08e"/>
@@ -1077,6 +1013,9 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CreateStandartFactors:" destination="5ux-lG-50G" eventType="touchUpInside" id="9g6-L9-dqT"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.33725490200000002" green="0.56862745100000001" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -1101,7 +1040,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lRk-Rd-xMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1495" y="-809"/>
+            <point key="canvasLocation" x="1595" y="-797"/>
         </scene>
         <!--Dairy View Controller-->
         <scene sceneID="Nhl-hV-0mJ">
@@ -1116,11 +1055,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6wj-BP-B8r">
-                                <rect key="frame" x="-265" y="0.0" width="289" height="515"/>
+                                <rect key="frame" x="-285" y="0.0" width="310" height="515"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mn-rk-yhX">
-                                        <rect key="frame" x="260" y="0.0" width="30" height="515"/>
+                                        <rect key="frame" x="280" y="0.0" width="30" height="515"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="instr">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1134,7 +1073,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lP9-gG-3JC">
-                                        <rect key="frame" x="0.0" y="0.0" width="267" height="515"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="515"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -1162,93 +1101,6 @@
                                     </tabBarItem>
                                 </items>
                             </tabBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8vH-gV-GXo">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gq3-TT-Xid" customClass="Draw2D">
-                                        <rect key="frame" x="20" y="82" width="280" height="240"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.76078431369999999" green="0.86274509799999999" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S2I-xk-XdD">
-                                        <rect key="frame" x="37" y="348" width="124" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="X69-4P-QPG">
-                                                <rect key="frame" x="1" y="1" width="122" height="48"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.42352941179999998" green="0.66666666669999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Добавить фактор">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="5ux-lG-50G" kind="modal" id="Z7v-2y-4OY"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.33725490200000002" green="0.56862745100000001" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7la-6g-hDf">
-                                        <rect key="frame" x="162" y="348" width="124" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3iz-5p-mbH">
-                                                <rect key="frame" x="1" y="1" width="122" height="48"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.42352941179999998" green="0.66666666669999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="Изменить">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="ReplaceData:" destination="5t2-Pg-EU9" eventType="touchUpInside" id="ZdZ-0W-9d7"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.33725490200000002" green="0.56862745100000001" blue="0.58431372550000005" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="voo-U8-v1o">
-                                        <rect key="frame" x="125" y="47" width="21" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="ico_k">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHg-5N-poA">
-                                        <rect key="frame" x="265" y="47" width="21" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="ico_k">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="yyyyyy" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1AY-Ov-rhF">
-                                        <rect key="frame" x="27" y="43" width="97" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
-                                        <connections>
-                                            <action selector="KeyboardHide:" destination="5t2-Pg-EU9" eventType="editingDidEndOnExit" id="RiC-1E-MN5"/>
-                                        </connections>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eKR-pK-tdB">
-                                        <rect key="frame" x="167" y="43" width="97" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
-                                        <connections>
-                                            <action selector="KeyboardHide:" destination="5t2-Pg-EU9" eventType="editingDidEndOnExit" id="age-sT-Zyd"/>
-                                        </connections>
-                                    </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Медицинский дневник" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1Z-om-PBQ">
-                                        <rect key="frame" x="20" y="18" width="280" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -1262,31 +1114,20 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="AddFactor" destination="X69-4P-QPG" id="4b3-Y1-9U9"/>
-                        <outlet property="AddFactorView" destination="S2I-xk-XdD" id="NWY-Am-jg9"/>
                         <outlet property="BottomView" destination="oLN-uY-vTm" id="Lf0-Fo-1ep"/>
-                        <outlet property="ChangeFactor" destination="3iz-5p-mbH" id="TC7-Up-mpF"/>
-                        <outlet property="ChangeFactorView" destination="7la-6g-hDf" id="wG5-jv-uJB"/>
-                        <outlet property="EndDateButton" destination="EHg-5N-poA" id="gim-9A-PBY"/>
-                        <outlet property="EndDateEdit" destination="eKR-pK-tdB" id="e5G-Z7-DPw"/>
-                        <outlet property="GrafView" destination="Gq3-TT-Xid" id="BVs-m9-vOi"/>
                         <outlet property="InstrButton" destination="0mn-rk-yhX" id="mrh-lJ-iWb"/>
                         <outlet property="InstrView" destination="6wj-BP-B8r" id="ixj-u8-YOj"/>
                         <outlet property="InstrViewBack" destination="lP9-gG-3JC" id="GwL-cz-OcL"/>
-                        <outlet property="MainScroll" destination="8vH-gV-GXo" id="dfZ-E5-rTM"/>
-                        <outlet property="StartDateButton" destination="voo-U8-v1o" id="JBb-P1-eUD"/>
-                        <outlet property="StartDateEdit" destination="1AY-Ov-rhF" id="qgg-0T-RBQ"/>
                         <segue destination="mmf-fA-rod" kind="modal" identifier="DairyToOpros" modalTransitionStyle="partialCurl" id="37z-zO-86A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="luE-oW-GXX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1495" y="-97"/>
+            <point key="canvasLocation" x="1595" y="-37"/>
         </scene>
     </scenes>
     <resources>
         <image name="back" width="54" height="34"/>
-        <image name="ico_k" width="21" height="20"/>
         <image name="instr" width="30" height="524"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -1295,8 +1136,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="FKt-Iu-Vgt"/>
+        <segue reference="O8b-9l-yxe"/>
+        <segue reference="MkT-i5-t6s"/>
         <segue reference="DGo-bG-0Jx"/>
-        <segue reference="37z-zO-86A"/>
     </inferredMetricsTieBreakers>
 </document>

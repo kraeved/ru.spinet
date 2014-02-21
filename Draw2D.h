@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class Draw2D;
+@protocol Draw2DDelegate <NSObject>
+@required
+- (void) FunctionOne: (NSDictionary*)data;
+
+@end
+
 @interface Draw2D : UIView
+//{
+//   id <Draw2DDelegate> delegate;
+//}
+
+
+@property (nonatomic,weak)  id <Draw2DDelegate> delegate;
+-(int)ShowInfoTwo;
 
 @end

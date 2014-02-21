@@ -155,7 +155,7 @@ int cc=0;
                 else*/
                 {
                     int i=0;
-                    if(count)
+                    if([count intValue])
                     {
                         self.View1.hidden = YES;
                         
@@ -187,6 +187,7 @@ int cc=0;
                             UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
                             text1.leftView = paddingView;
                             text1.leftViewMode = UITextFieldViewModeAlways;
+                            text1.textAlignment = NSTextAlignmentCenter;
                             [mainScroll addSubview:text1];
                             text1.tag = [[legend[i] objectForKey:@"tip"] intValue];
                             
@@ -268,6 +269,7 @@ int cc=0;
                         text1.layer.borderWidth = 1.0;
                         text1.font = [UIFont systemFontOfSize:10];
                         text1.userInteractionEnabled=YES;
+                        text1.textAlignment = NSTextAlignmentCenter;
                         UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
                         text1.leftView = paddingView;
                         text1.leftViewMode = UITextFieldViewModeAlways;
@@ -280,6 +282,7 @@ int cc=0;
                         text2.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];
                         text2.backgroundColor = [UIColor whiteColor];
                         text2.layer.borderWidth = 1.0;
+                        text2.textAlignment = NSTextAlignmentCenter;
                         text2.font = [UIFont systemFontOfSize:10];
                         UIView *paddingView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
                         text2.userInteractionEnabled=YES;
@@ -296,6 +299,7 @@ int cc=0;
                         text3.layer.borderWidth = 1.0;
                         text3.font = [UIFont systemFontOfSize:10];
                         text3.userInteractionEnabled=YES;
+                        text3.textAlignment = NSTextAlignmentCenter;
                         UIView *paddingView3 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
                         text3.leftView = paddingView3;
                         text3.leftViewMode = UITextFieldViewModeAlways;
@@ -369,6 +373,42 @@ int cc=0;
 
 }
 
+- (IBAction)CreateStandartFactors:(id)sender {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *session = [userDefaults objectForKey:@"session"];
+    if ([session length]) {
+        NSLog(@"session = %@", [userDefaults objectForKey:@"session"]);
+        NSString* myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=createstandartfactors&session=%@", session];
+        NSLog(@"%@",myurl);
+        NSDictionary* cookie = [Functions SendGetRequest:myurl];
+        
+        if(cookie)
+        {
+            NSString *result = cookie[@"result"];
+            NSLog(@"result: %@", result);
+            if(result.boolValue)
+            {
+                
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"EnterDairyViewController"];
+                [self presentViewController:viewController animated:NO completion:nil];
+            }
+            else {
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка авторизации!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+            }
+        }
+        else {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка соединения!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+        }
+    }
+    else {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка авторизации!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
 - (void)senddata:(UIButton*)button
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -388,7 +428,7 @@ int cc=0;
         }
         //[mydata setValue:x forKey:key];
         NSData* jsonData = [NSJSONSerialization dataWithJSONObject:mydata options:kNilOptions error:Nil];
-        NSString *responseString=[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+       // NSString *responseString=[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         
         NSString *ur=@"";
         for (id key in [mydata allKeys])

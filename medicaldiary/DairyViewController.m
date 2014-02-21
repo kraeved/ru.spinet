@@ -9,20 +9,143 @@
 #import "DairyViewController.h"
 #import "Functions.h"
 #import "AppDelegate.h"
-#import "FPPopoverController.h"
-#import "PopoverViewController.h"
+#import "Draw2D.h"
+#import "CustomScrollView.h"
+
 
 @interface DairyViewController ()
+
+
 
 @end
 
 @implementation DairyViewController
 
-@synthesize StartDateEdit1;//=_StartDateEdit;
+
 
 float AdvSearchViewY=0;
 float AdvSearchViewPath=0;
 int AdvSearchViewOpen=0;
+NSTimer *timer;
+UITextField *text1;
+UITextField *text2;
+float scrollheight;
+CustomScrollView* mainScroll;
+Draw2D *grafview;
+UIButton *start_button, *end_button;
+FPPopoverController *popover;
+UIScrollView *instrscroll;
+
+- (void) FunctionOne: (NSDictionary*)data
+{
+    //Put your finction code here
+    
+    //NSLog(@"first %@",data);
+    NSDictionary* name = [data objectForKey:@"grafik_data"];
+    NSDictionary* legend = [data objectForKey:@"grafik_legend"];
+    int i=0;
+    if(legend.count && name.count)
+    {
+        
+    NSDictionary* colors = [legend objectForKey:@"color"];
+    NSDictionary* legenda = [legend objectForKey:@"legenda"];
+    mainScroll.contentSize = CGSizeMake(self.view.frame.size.width, grafview.frame.origin.y+grafview.frame.size.height+20 + (colors.count*40)+80);
+    scrollheight=grafview.frame.origin.y+grafview.frame.size.height+20 + (colors.count*40)+80;
+    
+    for(id key in [legenda allKeys])
+    {
+        //NSLog(@"%@ - %@ - %@",key,[legenda objectForKey:key],[colors objectForKey:key]);
+        NSArray *c1=[colors objectForKey:key];
+        UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(20, grafview.frame.origin.y+grafview.frame.size.height+20 + (i*40),20,20)];
+        view1.layer.masksToBounds=YES;
+        view1.layer.cornerRadius = 3.0;
+        view1.backgroundColor = [UIColor colorWithRed:[c1[0] floatValue] / 255.0f
+                                                green:[c1[1] floatValue] / 255.0f
+                                                 blue:[c1[2] floatValue] / 255.0f
+                                                alpha:1.0f];
+        [mainScroll addSubview:view1];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(50, grafview.frame.origin.y+grafview.frame.size.height+10 + (i*40),self.view.frame.size.width-60,40)];
+        label.text = [NSString stringWithFormat:@"%@", [legenda objectForKey:key]];
+        label.font = [UIFont fontWithName:@"Arial" size:(12.0)];
+        label.numberOfLines=0;
+        //label.textAlignment = NSTextAlignmentCenter;
+        [mainScroll addSubview:label];
+        view1.layer.zPosition=0;
+        label.layer.zPosition=0;
+        
+        i++;
+    }
+    }
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[data objectForKey:@"start_date"] forKey:@"start_date"];
+    [userDefaults setObject:[data objectForKey:@"end_date"] forKey:@"end_date"];
+    [userDefaults synchronize];
+    
+    text1.text = [data objectForKey:@"start_date"];
+    text2.text = [data objectForKey:@"end_date"];
+    
+    UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(36, grafview.frame.origin.y+grafview.frame.size.height+20 + (i*40)+ 20-1,124,50)];
+    view2.layer.masksToBounds=YES;
+    view2.layer.cornerRadius = 10.0;
+    view2.layer.borderColor = [[UIColor whiteColor] CGColor];
+    view2.layer.borderWidth = 0.0;
+    view2.backgroundColor = [Functions colorWithRGBHex:0x569195];
+    [mainScroll addSubview:view2];
+
+    UIButton *button2 = [[UIButton alloc] initWithFrame:CGRectMake(37, grafview.frame.origin.y+grafview.frame.size.height+20 + (i*40)+ 20,122,48)];
+    button2.layer.masksToBounds=YES;
+    button2.layer.cornerRadius = 10.0;
+    [button2 setTitle:@"Добавить фактор" forState: UIControlStateNormal];
+    button2.titleLabel.numberOfLines=2;
+    button2.titleLabel.textAlignment = NSTextAlignmentCenter;
+    //button1.titleLabel.text = @"Send";
+    button2.layer.borderColor = [[UIColor whiteColor] CGColor];
+    button2.layer.borderWidth = 3.0;
+    button2.backgroundColor = [Functions colorWithRGBHex:0x6caa45];
+    button2.titleLabel.font = [UIFont systemFontOfSize:15];
+    
+    [button2 addTarget:self action:@selector(addfactorfun) forControlEvents:UIControlEventTouchUpInside];
+    button2.userInteractionEnabled=YES;
+    
+    [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [mainScroll addSubview:button2];
+    
+    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(162, grafview.frame.origin.y+grafview.frame.size.height+20 + (i*40)+ 20-1,124,50)];
+    view1.layer.masksToBounds=YES;
+    view1.layer.cornerRadius = 10.0;
+    view1.layer.borderColor = [[UIColor whiteColor] CGColor];
+    view1.layer.borderWidth = 0.0;
+    view1.backgroundColor = [Functions colorWithRGBHex:0x569195];
+    [mainScroll addSubview:view1];
+    
+    UIButton *button1 = [[UIButton alloc] initWithFrame:CGRectMake(163, grafview.frame.origin.y+grafview.frame.size.height+20 + (i*40)+ 20,122,48)];
+    button1.layer.masksToBounds=YES;
+    button1.layer.cornerRadius = 10.0;
+    [button1 setTitle:@"Изменить" forState: UIControlStateNormal];
+    button1.titleLabel.numberOfLines=2;
+    button1.titleLabel.textAlignment = NSTextAlignmentCenter;
+    //button1.titleLabel.text = @"Send";
+    button1.layer.borderColor = [[UIColor whiteColor] CGColor];
+    button1.layer.borderWidth = 3.0;
+    button1.backgroundColor = [Functions colorWithRGBHex:0x6caa45];
+    button1.titleLabel.font = [UIFont systemFontOfSize:15];
+    
+    [button1 addTarget:self action:@selector(ReplaceData:) forControlEvents:UIControlEventTouchUpInside];
+    button1.userInteractionEnabled=YES;
+    
+    [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [mainScroll addSubview:button1];
+    NSLog(@"button=%f",button2.frame.origin.y);
+}
+
+- (void)addfactorfun
+{
+    //AddFactorViewController
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"AddFactorViewController"];
+    [self presentViewController:viewController animated:NO completion:nil];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,8 +158,9 @@ int AdvSearchViewOpen=0;
 
 - (IBAction)KeyboardHide:(id)sender
 {
-    [self.StartDateEdit resignFirstResponder];
-    [self.EndDateEdit resignFirstResponder];
+    [text1 resignFirstResponder];
+    [text2 resignFirstResponder];
+    NSLog(@"sc=%f",mainScroll.contentSize.height);
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
@@ -62,127 +186,103 @@ int AdvSearchViewOpen=0;
     }
 }
 
-
--(void)getGrafik:(NSString*)session datestart:(NSString*)start dateend:(NSString*)end
+-(void)increaseTimerCount
 {
-    
-    //получение графика
-    /*NSString *myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=grafik&session=%@", session];
-    if ([start length]) {
-        myurl = [NSString stringWithFormat:@"%@&start_date=%@",myurl, start];
-    }
-    if ([end length]) {
-        myurl = [NSString stringWithFormat:@"%@&end_date=%@",myurl, end];
-    }
-    NSURL *ImageURL = [NSURL URLWithString: myurl];
-     
-    NSData *data = [[NSData alloc] initWithContentsOfURL: ImageURL];
-    UIImage *image;
-    if(data.bytes)
-    {
-        image = [[UIImage alloc] initWithData: data];
-        [self.Grafik setImage:image];
-    }
-    //получение легенды графика
-    myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=grafik_legend&session=%@", session];
-    if ([start length]) {
-        myurl = [NSString stringWithFormat:@"%@&start_date=%@",myurl, start];
-    }
-    if ([end length]) {
-        myurl = [NSString stringWithFormat:@"%@&end_date=%@",myurl, end];
-    }*/
-
-    /*NSDictionary* cookie = [Functions SendGetRequest:myurl];
-    if(cookie)
-    {
-        NSString *result = cookie[@"result"];
-        NSLog(@"result: %@", result);
-        if(result.boolValue)
-        {
-            NSArray* name = [cookie objectForKey:@"legend"];
-            NSLog(@"count:%d",name.count);
-            CGFloat yOrigin=230;
-            for(int i=0;i<name.count;i++)
-            {
-                yOrigin=yOrigin+30;
-                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, yOrigin,self.view.frame.size.width,30)];
-                label.text = [NSString stringWithFormat:@"%@", [name[i] objectForKey:@"text"]];
-                [self.view addSubview:label];
-            //[UIColor colorWithRed:r / 255.0f green:g / 255.0f blue:b / 255.0f alpha:1.0f]
-            }
-        }
-        else {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка авторизации!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alert show];
-        }
-    }
-    else{
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка соединения!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-    }*/
+    Draw2D *play = [[Draw2D alloc] init];
+    play.delegate=self;
+    [play setDelegate:self];
+    if([play ShowInfoTwo]) {[timer invalidate];}
 
 }
 
-+ (void)AddFactors: (NSDictionary*)factors
+- (void)viewWillAppear:(BOOL)animated
 {
-    /*int i=0;
-    for (id key in [factors allKeys])
-    {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 40+250*i, MainScroll.frame.size.width-60,30)];
-        label.text = [NSString stringWithFormat:@"%@", [legend1 objectForKey:key]];
-        [self.MainScroll addSubview:label];
-        
-        UIButton *button1 = [[UIButton alloc] initWithFrame:CGRectMake(30, 40+200+250*i,MainScroll.frame.size.width-60,40)];
-        button1.layer.masksToBounds=YES;
-        button1.layer.cornerRadius = 5.0;
-        button1.titleLabel.text = @"Удалить фактор";
-        button1.layer.borderColor = [[UIColor blackColor] CGColor];
-        button1.layer.borderWidth = 1.0;
-        button1.titleLabel.font = [UIFont systemFontOfSize:14];
-        button1.userInteractionEnabled=YES;
-        [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button1 setTitleColor:[UIColor purpleColor] forState:UIControlStateHighlighted];
-        [button1 setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
-        [button1 setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
-        
-        
-        [self.MainScroll addSubview:button1];
 
-        i++;
-    }*/
-
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(increaseTimerCount) userInfo:nil repeats:YES];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   
+    mainScroll = [[CustomScrollView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.BottomView.frame.origin.y-20)];
+    
+    [self.view addSubview:mainScroll];
+    
+    grafview = [[Draw2D alloc] initWithFrame:CGRectMake(20,82, 280,240)];
+    grafview.backgroundColor = [Functions colorWithRGBHex:0xc2dcdd];
+    [mainScroll addSubview:grafview];
+    
+    
+    start_button = [[UIButton alloc] initWithFrame:CGRectMake(118, 47,21,22)];
+    UIImage *btnImage = [UIImage imageNamed:@"ico_k"];
+    [start_button setImage:btnImage forState:UIControlStateNormal];
+    start_button.userInteractionEnabled=YES;
+    start_button.tag=1;
+    [mainScroll addSubview:start_button];
+    
+    end_button = [[UIButton alloc] initWithFrame:CGRectMake(243, 47,21,22)];
+    
+    [end_button setImage:btnImage forState:UIControlStateNormal];
+    end_button.userInteractionEnabled=YES;
+    end_button.tag=2;
+    [mainScroll addSubview:end_button];
+    
+    UIButton *OkButton = [[UIButton alloc] initWithFrame:CGRectMake(270, 43, 30, 30)];
+    OkButton.layer.masksToBounds=YES;
+    OkButton.layer.cornerRadius = 3.0;
+    [OkButton setTitle:@"OK" forState: UIControlStateNormal];
+    OkButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    //button2.layer.borderColor = [[UIColor whiteColor] CGColor];
+    //button2.layer.borderWidth = 3.0;
+    OkButton.backgroundColor = [Functions colorWithRGBHex:0x6caa45];
+    OkButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [mainScroll addSubview:OkButton];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 18, 280, 21)];
+    label.text = @"Медицинский дневник";
+    label.font = [UIFont fontWithName:@"Arial" size:(15.0)];
+    label.numberOfLines=0;
+    label.textAlignment = NSTextAlignmentCenter;
+    [mainScroll addSubview:label];
+    
+    text1 = [[UITextField alloc] initWithFrame:CGRectMake(20, 43,97,30)];
+    text1.layer.masksToBounds=YES;
+    text1.layer.cornerRadius = 5.0;
+    
+    text1.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];
+    text1.backgroundColor = [UIColor whiteColor];
+    text1.layer.borderWidth = 1.0;
+    text1.font = [UIFont systemFontOfSize:12];
+    text1.userInteractionEnabled=YES;
+    text1.textAlignment = NSTextAlignmentCenter;
+    
+    [mainScroll addSubview:text1];
+    [text1 addTarget:self action:@selector(popover:) forControlEvents:UIControlEventEditingDidBegin];
+    [text1 addTarget:self action:@selector(KeyboardHide:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    
+    text2 = [[UITextField alloc] initWithFrame:CGRectMake(145, 43,97,30)];
+    text2.layer.masksToBounds=YES;
+    text2.layer.cornerRadius = 5.0;
+    
+    text2.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];
+    text2.backgroundColor = [UIColor whiteColor];
+    text2.layer.borderWidth = 1.0;
+    text2.font = [UIFont systemFontOfSize:12];
+    text2.userInteractionEnabled=YES;
+    text2.textAlignment = NSTextAlignmentCenter;
+    [mainScroll addSubview:text2];
+    [text2 addTarget:self action:@selector(popover:) forControlEvents:UIControlEventEditingDidBegin];
+    [text2 addTarget:self action:@selector(KeyboardHide:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"" forKey:@"readylegend"];
+    [userDefaults synchronize];
     [Functions MyGradient:self.view];
-    //self.AddFactor.numberOfLines = 0;
-    self.AddFactor.titleLabel.textAlignment = UITextAlignmentCenter;
-    //[Functions MyGradientForView:self.GrafView];
-    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+
     [self.BottomView setSelectedItem:[self.BottomView.items objectAtIndex:1]];
     self.BottomView.delegate = self;
-    
-    self.AddFactor.layer.masksToBounds=YES;
-    self.AddFactor.layer.cornerRadius = 10.0;
-    self.AddFactor.layer.borderColor = [[UIColor whiteColor] CGColor];
-    self.AddFactor.layer.borderWidth = 3.0;
-    
-    self.AddFactorView.layer.masksToBounds=YES;
-    self.AddFactorView.layer.cornerRadius = 10.0;
-    self.AddFactorView.layer.borderColor = [[UIColor whiteColor] CGColor];
-    self.AddFactorView.layer.borderWidth = 0.0;
-    
-    self.ChangeFactor.layer.masksToBounds=YES;
-    self.ChangeFactor.layer.cornerRadius = 10.0;
-    self.ChangeFactor.layer.borderColor = [[UIColor whiteColor] CGColor];
-    self.ChangeFactor.layer.borderWidth = 3.0;
-
-    self.ChangeFactorView.layer.masksToBounds=YES;
-    self.ChangeFactorView.layer.cornerRadius = 10.0;
-    self.ChangeFactorView.layer.borderColor = [[UIColor whiteColor] CGColor];
-    self.ChangeFactorView.layer.borderWidth = 0.0;
     
     self.InstrView.layer.zPosition=15;
     self.InstrViewBack.layer.borderColor = [[Functions colorWithRGBHex:0x569195] CGColor];
@@ -202,10 +302,12 @@ int AdvSearchViewOpen=0;
     self.InstrView.layer.zPosition=18;
     self.InstrViewBack.layer.zPosition=19;
     
-    [self.view sendSubviewToBack:self.MainScroll];
-    self.MainScroll.layer.zPosition=2;
-    //[self.InstrView insertSubview:self.InstrButton belowSubview:self.InstrViewBack];
+    [self.view sendSubviewToBack:mainScroll];
+    mainScroll.delegate=self;
+    mainScroll.layer.zPosition=2;
+    grafview.layer.zPosition=2;
     
+    mainScroll.userInteractionEnabled=YES;
     
     [self.BottomView.items[0] setFinishedSelectedImage:[UIImage imageNamed:@"help_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"help"]];
     
@@ -215,34 +317,130 @@ int AdvSearchViewOpen=0;
     
     [self.BottomView.items[3] setFinishedSelectedImage:[UIImage imageNamed:@"shagomer_a"] withFinishedUnselectedImage:[UIImage imageNamed:@"shagomer"]];
     
-	// Do any additional setup after loading the view.
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *session = [userDefaults objectForKey:@"session"];
     NSLog(@"%@",session);
     if ([session length]) {
-        //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [self getGrafik:session datestart:@"" dateend:@""];
         
     } else {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка авторизации!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
     
-    [self.StartDateButton addTarget:self action:@selector(popover:) forControlEvents:UIControlEventTouchUpInside];
+    [start_button addTarget:self action:@selector(popover:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.EndDateButton addTarget:self action:@selector(popover:) forControlEvents:UIControlEventTouchUpInside];
+    [end_button addTarget:self action:@selector(popover:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.StartDateEdit addTarget:self action:@selector(popover:) forControlEvents:UIControlEventEditingDidBegin];
+    [OkButton addTarget:self action:@selector(SendDate) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.EndDateEdit addTarget:self action:@selector(popover:) forControlEvents:UIControlEventEditingDidBegin];
+    instrscroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, self.InstrViewBack.frame.size.width, self.InstrViewBack.frame.size.height-35)];
     
-    self.StartDateEdit=self.StartDateEdit1;
+    instrscroll.delegate=self;
+    instrscroll.layer.zPosition=30;
+    instrscroll.userInteractionEnabled=YES;
     
-    //self.InstrConstraint.constant = self.BottomView.frame.origin.y;
-    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    NSArray *vcs = appDelegate.window.rootViewController.childViewControllers;
-    //UIViewController *fvc  = [vcs objectAtIndex:0];
-    //UIViewController *svc = [vcs objectAtIndex:1];
+    [self.InstrViewBack addSubview:instrscroll];
+    
+    UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, self.InstrViewBack.frame.size.width-20, 40)];
+    label3.text = @"Выберите любой отрезок времени, за который хотите изучить кривые ваших факторов.";
+    label3.font = [UIFont fontWithName:@"Arial" size:(12.0)];
+    label3.numberOfLines=0;
+    //label3.textAlignment = NSTextAlignmentCenter;
+    [instrscroll addSubview:label3];
+    
+    UIImageView *image = [[UIImageView alloc] initWithFrame:
+                          CGRectMake(10, 70, self.InstrViewBack.frame.size.width-20,
+                                     300)];
+    image.image = [UIImage imageNamed:@"image_1"];
+    image.contentMode = UIViewContentModeScaleAspectFit;
+    UIImage *img = [UIImage imageNamed:@"image_1"];
+    [image setImage:img];
+    [instrscroll addSubview:image];
+    
+    label3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 380, self.InstrViewBack.frame.size.width-20, 40)];
+    label3.text = @"После выбора отрезка времени нажмите кнопку \"OK\"";
+    label3.font = [UIFont fontWithName:@"Arial" size:(12.0)];
+    label3.numberOfLines=0;
+    //label3.textAlignment = NSTextAlignmentCenter;
+    [instrscroll addSubview:label3];
+    
+    label3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 430, self.InstrViewBack.frame.size.width-20, 40)];
+    label3.text = @"Для добавления новых факторов нажмите кнопку \"Добавить фактор\".";
+    label3.font = [UIFont fontWithName:@"Arial" size:(12.0)];
+    label3.numberOfLines=0;
+    //label3.textAlignment = NSTextAlignmentCenter;
+    [instrscroll addSubview:label3];
+    
+    image = [[UIImageView alloc] initWithFrame:
+                          CGRectMake(10, 480, self.InstrViewBack.frame.size.width-20,
+                                     300)];
+    image.image = [UIImage imageNamed:@"image_4"];
+    image.contentMode = UIViewContentModeScaleAspectFit;
+    img = [UIImage imageNamed:@"image_4"];
+    [image setImage:img];
+    [instrscroll addSubview:image];
+    
+    label3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 790, self.InstrViewBack.frame.size.width-20, 40)];
+    label3.text = @"На этом экране Вы можете добавить новый фактор, либо изменить название уже существующего.";
+    label3.font = [UIFont fontWithName:@"Arial" size:(12.0)];
+    label3.numberOfLines=0;
+    //label3.textAlignment = NSTextAlignmentCenter;
+    [instrscroll addSubview:label3];
+    
+    image = [[UIImageView alloc] initWithFrame:
+             CGRectMake(10, 840, self.InstrViewBack.frame.size.width-20,
+                        300)];
+    image.image = [UIImage imageNamed:@"image_2"];
+    image.contentMode = UIViewContentModeScaleAspectFit;
+    img = [UIImage imageNamed:@"image_2"];
+    [image setImage:img];
+    [instrscroll addSubview:image];
+    
+    label3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 1150, self.InstrViewBack.frame.size.width-20, 40)];
+    label3.text = @"Для оценивания факторов нажмите кнопку \"Изменить\".";
+    label3.font = [UIFont fontWithName:@"Arial" size:(12.0)];
+    label3.numberOfLines=0;
+    //label3.textAlignment = NSTextAlignmentCenter;
+    [instrscroll addSubview:label3];
+    
+    image = [[UIImageView alloc] initWithFrame:
+             CGRectMake(10, 1200, self.InstrViewBack.frame.size.width-20,
+                        300)];
+    image.image = [UIImage imageNamed:@"image_4"];
+    image.contentMode = UIViewContentModeScaleAspectFit;
+    img = [UIImage imageNamed:@"image_4"];
+    [image setImage:img];
+    [instrscroll addSubview:image];
+    
+    
+    label3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 1510, self.InstrViewBack.frame.size.width-20, 60)];
+    label3.text = @"Для оценивания факторов выберите соответствующий фактор и проскролите колесико до соответствующего значения оценки фактора.";
+    label3.font = [UIFont fontWithName:@"Arial" size:(12.0)];
+    label3.numberOfLines=0;
+    //label3.textAlignment = NSTextAlignmentCenter;
+    [instrscroll addSubview:label3];
+    
+    image = [[UIImageView alloc] initWithFrame:
+             CGRectMake(10, 1580, self.InstrViewBack.frame.size.width-20,
+                        300)];
+    image.image = [UIImage imageNamed:@"image_3"];
+    image.contentMode = UIViewContentModeScaleAspectFit;
+    img = [UIImage imageNamed:@"image_3"];
+    [image setImage:img];
+    [instrscroll addSubview:image];
+    
+    instrscroll.contentSize = CGSizeMake(instrscroll.frame.size.width, image.frame.origin.y+image.frame.size.height+20);
+    
+}
+
+- (void) SendDate
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"yes" forKey:@"senddate"];
+    [userDefaults synchronize];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"DairyViewController"];
+    [self presentViewController:viewController animated:NO completion:nil];
+    
 }
 
 - (IBAction)AdvSearchDragOutside:(UIButton *)sender forEvent:(UIEvent *)event {
@@ -331,7 +529,7 @@ int AdvSearchViewOpen=0;
         else
         {
             CGRect newFrame = self.InstrView.frame;
-            newFrame.origin.x = -265;
+            newFrame.origin.x = -285;
             [UIView animateWithDuration:0.25
                              animations:^{
                                  self.InstrView.frame = newFrame;
@@ -352,12 +550,27 @@ int AdvSearchViewOpen=0;
     //NSLog(@"fffff");
 }
 
--(void)popover:(id)sender
+-(void)popover:(UIButton*)sender
 {
+    if(sender.tag==1)
+    {
+        NSLog(@"start_button");
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:@"start_button" forKey:@"click_button"];
+        [userDefaults synchronize];
+    }
+    else if(sender.tag==2)
+    {
+        NSLog(@"end_button");
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:@"end_button" forKey:@"click_button"];
+        [userDefaults synchronize];
+    }
     //the controller we want to present as a popover
     PopoverViewController *controller = [[PopoverViewController alloc] init];
+    controller.delegate=self;
     
-    FPPopoverController *popover = [[FPPopoverController alloc] initWithViewController:controller];
+    popover = [[FPPopoverController alloc] initWithViewController:controller];
     
     //popover.arrowDirection = FPPopoverArrowDirectionAny;
     popover.tint = FPPopoverDefaultTint;
@@ -368,18 +581,33 @@ int AdvSearchViewOpen=0;
     }
     popover.arrowDirection = FPPopoverArrowDirectionUp;
     popover.tint=FPPopoverGreenTint;
-    
+    popover.view.layer.zPosition=20;
+    popover.delegate=self;
     //sender is the UIButton view
     [popover presentPopoverFromView:sender];
     
+    //[popover presentPopoverFromPoint:CGPointMake(sender.frame.origin.x + sender.frame.size.width/2.0, sender.frame.origin.x + sender.frame.size.width/2.0)];
+    
 }
 
-//изменить факторы
-- (IBAction)EnterData:(id)sender {
-    
-     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"EnterDairyViewController"];
-    [self presentViewController:viewController animated:NO completion:nil];
+- (void) ClosePopover
+{
+    NSLog(@"close");
+    [popover dismissPopoverAnimated:NO];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *start = [userDefaults objectForKey:@"start_date"];
+    NSString *end = [userDefaults objectForKey:@"end_date"];
+    [text1 setText:start];
+    [text2 setText:end];
+    [userDefaults setObject:@"" forKey:@"click_button"];
+    [userDefaults synchronize];
+}
+
+- (void)popoverControllerDidDismissPopover:(FPPopoverController *)popoverController
+{
+    mainScroll.contentSize = CGSizeMake(self.view.frame.size.width, scrollheight);
+    [mainScroll setContentSize:CGSizeMake(self.view.frame.size.width, scrollheight)];
+    NSLog(@"dismissfffff=%f-%f",scrollheight,mainScroll.contentSize.height);
 }
 
 //добавить фактор
@@ -394,5 +622,6 @@ int AdvSearchViewOpen=0;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

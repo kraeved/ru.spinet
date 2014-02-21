@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FPPopoverController.h"
+
+@class PopoverViewController;
+@protocol PopoverViewControllerDelegate <NSObject>
+@required
+- (void) ClosePopover;
+
+@end
 
 @interface PopoverViewController : UIViewController
+
+@property (nonatomic,weak)  id <PopoverViewControllerDelegate> delegate;
+-(int)ShowInfoTwo;
+- (void)changeDate:(UIButton*)button;
 
 @end

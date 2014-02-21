@@ -9,7 +9,12 @@
 #import "Draw2D.h"
 #import "Functions.h"
 
+
 @implementation Draw2D
+
+@synthesize delegate=_delegate;
+NSDictionary* cookie;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -20,24 +25,39 @@
     return self;
 }
 
+- (int) ShowInfoTwo
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *session = [userDefaults objectForKey:@"readylegend"];
+    if(![session isEqualToString:@""])
+    {
+        NSLog(@"eeeeee");
+        [_delegate FunctionOne:cookie];
+        return 1;
+    }
+    else return 0;
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    //return;
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
     //получение легенды графика
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *session = [userDefaults objectForKey:@"session"];
+    NSString *senddate = [userDefaults objectForKey:@"senddate"];
     NSString* myurl = [NSString stringWithFormat:@"http://spinet.ru/mobile/index.php?p=grafik_data&session=%@", session];
-    NSLog(@"%@",myurl);
-    /*if ([start length]) {
-        myurl = [NSString stringWithFormat:@"%@&start_date=%@",myurl, start];
+    if([senddate isEqualToString:@"yes"])
+    {
+        NSString *start_date = [userDefaults objectForKey:@"start_date"];
+        NSString *end_date = [userDefaults objectForKey:@"end_date"];
+        myurl = [NSString stringWithFormat:@"%@&start_date=%@&end_date=%@", myurl, start_date, end_date];
     }
-    if ([end length]) {
-        myurl = [NSString stringWithFormat:@"%@&end_date=%@",myurl, end];
-    }*/
+    NSLog(@"%@",myurl);
+
     //отступ слева
     CGFloat lof = 0.2f;//15.0f;
     //отступ снизу
@@ -50,7 +70,7 @@
     //расстояние между строками
     CGFloat middle = (hei-dof)/10;
     
-    NSDictionary* cookie = [Functions SendGetRequest:myurl];
+    cookie = [Functions SendGetRequest:myurl];
      if(cookie)
      {
          NSString *result = cookie[@"result"];
@@ -75,11 +95,7 @@
                  CGContextMoveToPoint(context, lof, i*middle);
                  CGContextAddLineToPoint(context, wid, i*middle);
                  CGContextStrokePath(context);
-                 /*CGContextSetTextMatrix(context, CGAffineTransformMake(1.0,0.0, 0.0, -1.0, 0.0, 0.0));
-                 CGContextSelectFont(context, "Arial", 10, kCGEncodingMacRoman);
-                 CGContextSetTextPosition(context, 0, 5+i*middle);
-                 NSString *intString = [NSString stringWithFormat:@"%d", 10-i];
-                 CGContextShowText(context, [intString UTF8String], strlen([intString UTF8String]));*/
+
 
              }
              //вертикальные
@@ -122,10 +138,10 @@
                      {
                          i1++;
                      }
-                     
-                     //CGContextMoveToPoint(context, lof + (i1*(wid-lof)/(dates.count-1)), middle*10 - ([[point[0] objectForKey:@"value"] intValue]*middle));
-                     
-                     //NSLog(@"%@ - %d",[point[0] objectForKey:@"date"],[[point[0] objectForKey:@"value"] intValue]);
+
+                     CGContextAddEllipseInRect(context,CGRectMake(lof + ((wid-lof)/(dates.count-1))-3, middle*10 - ([[point[0] objectForKey:@"value"] intValue]*middle)-3,6,6));
+                     CGContextStrokePath(context);
+                     //NSLog(@"%f - %f",lof + ((wid-lof)/(dates.count-1)),middle*10 - ([[point[0] objectForKey:@"value"] intValue]*middle));
                      for(int i=1;i<point.count;i++)
                      {
                          i1=0;
@@ -135,6 +151,8 @@
                          {
                              i1++;
                          }
+                         NSLog(@"i1=%i",i1);
+                         CGContextAddEllipseInRect(context,CGRectMake(lof + ((i1-1)*(wid-lof)/(dates.count-1)), middle*10 - ([[point[i-1] objectForKey:@"value"] intValue]*middle),5,5));
                          CGContextMoveToPoint(context, lof + ((i1-1)*(wid-lof)/(dates.count-1)), middle*10 - ([[point[i-1] objectForKey:@"value"] intValue]*middle));
                          CGContextAddLineToPoint(context, lof+(i1*(wid-lof)/(dates.count-1)), middle*10 - ([[point[i] objectForKey:@"value"] intValue]*middle));
                          //CGContextAddLineToPoint(context, 270.0f, 5.0f);
@@ -144,6 +162,13 @@
                      CGColorRelease(color);
                  }
              }
+             NSLog(@"show");
+             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+             [userDefaults setObject:@"11111" forKey:@"readylegend"];
+             [userDefaults setObject:@"" forKey:@"senddate"];
+             [userDefaults synchronize];
+             //[_delegate FunctionOne:legend];
+ 
          }
          else {
          UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"spinet.ru" message:@"Ошибка авторизации!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -156,6 +181,5 @@
      }
 
 }
-
 
 @end
